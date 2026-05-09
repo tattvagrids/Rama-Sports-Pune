@@ -12,6 +12,15 @@
     <!-- External CSS -->
     <link rel="stylesheet" href="style.css">
     
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          // Initialize EmailJS with your Public Key
+          emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+       })();
+    </script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -325,9 +334,15 @@
                                 <input type="text" id="bookName" placeholder="Your Full Name" class="w-full pl-12 p-3 md:p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange font-bold transition text-sm md:text-base" required>
                             </div>
                             
-                            <div class="relative mb-6 md:mb-8">
+                            <div class="relative mb-4">
                                 <i class="fa-solid fa-phone absolute left-4 top-4 text-gray-400"></i>
                                 <input type="tel" id="bookPhone" placeholder="Phone Number" class="w-full pl-12 p-3 md:p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange font-bold transition text-sm md:text-base" required>
+                            </div>
+
+                            <!-- NEW EMAIL FIELD FOR EMAILJS -->
+                            <div class="relative mb-6 md:mb-8">
+                                <i class="fa-solid fa-envelope absolute left-4 top-4 text-gray-400"></i>
+                                <input type="email" id="bookEmail" placeholder="Your Email Address" class="w-full pl-12 p-3 md:p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange font-bold transition text-sm md:text-base" required>
                             </div>
 
                             <button type="submit" id="submitBtn" class="w-full orange-btn py-4 md:py-5 rounded-xl font-black text-lg md:text-xl shadow-xl flex justify-center items-center gap-3">
@@ -362,7 +377,7 @@
                 </div>
             </div>
 
-            <!-- ACADEMY DETAILS (Updated strictly to owner request) -->
+            <!-- ACADEMY DETAILS -->
             <div class="mt-10 md:mt-16 bg-navy/90 backdrop-blur-md border border-white/10 p-8 md:p-12 rounded-[2rem] shadow-2xl gs-slide-up text-center">
                 <h3 class="text-3xl md:text-5xl font-black text-white mb-4">Rama Sports Academy</h3>
                 <p class="text-orange font-bold text-lg md:text-xl mb-8">Professional Coaching & Dedicated Development</p>
@@ -574,22 +589,22 @@
                 
                 <!-- Initial 4 Visible Photos -->
                 <div class="gallery-item action col-span-2 row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift gs-slide-left shadow-lg">
-                    <img src="turf1.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-navy/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center backdrop-blur-sm">
                         <span class="text-white font-black text-lg md:text-2xl border-4 border-orange px-4 py-2 md:px-8 md:py-3 rounded-full shadow-2xl">Pro Football Turf</span>
                     </div>
                 </div>
                 
                 <div class="gallery-item action relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift gs-slide-down shadow-lg">
-                    <img src="entrance.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
                 
                 <div class="gallery-item action relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift gs-slide-right shadow-lg">
-                    <img src="basketball1.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="https://images.unsplash.com/photo-1628891435222-06592e071ee9?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
                 
                 <div class="gallery-item facility col-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift gs-slide-up shadow-lg">
-                    <img src="layout.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-white font-black bg-orange px-3 py-1 md:px-4 md:py-2 rounded-lg shadow-xl text-xs md:text-lg">
                         Night Vision LED
                     </div>
@@ -597,22 +612,22 @@
 
                 <!-- Hidden Extra Photos -->
                 <div class="gallery-item action extra-photo hidden relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift shadow-lg">
-                    <img src="turf2.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="https://images.unsplash.com/photo-1622226279768-45ee6bf27376?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
 
                 <div class="gallery-item facility extra-photo hidden relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift shadow-lg">
-                    <img src="turf3.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="https://images.unsplash.com/photo-1577471488278-16eec37ff0d1?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
 
                 <div class="gallery-item facility extra-photo hidden col-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift shadow-lg">
-                    <img src="turf4.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="https://images.unsplash.com/photo-1459865264687-595d652de67e?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-white font-black bg-teal px-3 py-1 md:px-4 md:py-2 rounded-lg shadow-xl text-xs md:text-lg">
                         Premium Turf Overview
                     </div>
                 </div>
 
                 <div class="gallery-item facility extra-photo hidden col-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift shadow-lg">
-                    <img src="basketball2.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                 </div>
                 
             </div>
@@ -815,7 +830,7 @@
         </div>
     </div>
 
-    <!-- Javascript Logic (Firebase Modular SDK v9) -->
+    <!-- Javascript Logic (Firebase Modular SDK v9 & EmailJS) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -1033,6 +1048,7 @@
             pendingBookingPayload = { 
                 name: document.getElementById('bookName').value, 
                 phone: document.getElementById('bookPhone').value, 
+                email: document.getElementById('bookEmail').value, // NEW EMAIL FIELD
                 sport: currentSport, 
                 date: selectedDate, 
                 timeSlot: combinedTimes, 
@@ -1081,11 +1097,49 @@
         window.confirmWhatsApp = async () => {
             if (!pendingBookingPayload) return;
             try {
+                // 1. Save to Firebase Database
                 await addDoc(collection(db, "bookings"), pendingBookingPayload);
+                
                 const total = pendingBookingPayload.price;
                 const advance = Math.round(total / 2);
+
+                // 2. Trigger Automated Emails via EmailJS
+                // REPLACE "YOUR_SERVICE_ID", "YOUR_OWNER_TEMPLATE_ID", and "YOUR_USER_TEMPLATE_ID" in production
+                try {
+                    // Send Email to Owner
+                    emailjs.send("YOUR_SERVICE_ID", "YOUR_OWNER_TEMPLATE_ID", {
+                        to_name: "Rama Sports Admin",
+                        from_name: pendingBookingPayload.name,
+                        user_email: pendingBookingPayload.email,
+                        user_phone: pendingBookingPayload.phone,
+                        sport: pendingBookingPayload.sport,
+                        date: pendingBookingPayload.date,
+                        time: pendingBookingPayload.timeSlot,
+                        total: total,
+                        advance: advance,
+                        message: "A new booking request was submitted. Please check WhatsApp for their payment screenshot."
+                    });
+
+                    // Send Email to Customer
+                    emailjs.send("YOUR_SERVICE_ID", "YOUR_USER_TEMPLATE_ID", {
+                        to_email: pendingBookingPayload.email,
+                        to_name: pendingBookingPayload.name,
+                        sport: pendingBookingPayload.sport,
+                        date: pendingBookingPayload.date,
+                        time: pendingBookingPayload.timeSlot,
+                        total: total,
+                        advance: advance,
+                        message: "Your booking request is initiated! To secure your slot, please ensure you have sent the 50% advance screenshot to our WhatsApp."
+                    });
+                } catch(emailErr) {
+                    console.warn("EmailJS failed. Ensure your keys are correctly set.", emailErr);
+                }
+
+                // 3. Redirect to WhatsApp for Screenshot
                 const waMsg = `*Advance Payment Done! Confirm My Slot* ✅%0A%0A*Name:* ${pendingBookingPayload.name}%0A*Sport:* ${pendingBookingPayload.sport}%0A*Date:* ${pendingBookingPayload.date}%0A*Time:* ${pendingBookingPayload.timeSlot}%0A%0A*Total Slot Value:* ₹${total}%0A*Advance Paid:* ₹${advance}%0A*Pending (Pay at Venue):* ₹${total - advance}%0A%0A[Please attach your payment screenshot here]`;
                 window.open(`https://wa.me/9156194847?text=${waMsg}`, '_blank');
+                
+                // Cleanup
                 document.getElementById('upiPaymentModal').remove();
                 document.getElementById('bookingForm').reset();
                 window.generateSlots(); 
