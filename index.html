@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Rama Sports | The City's Best Turf</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#F4F4F4',   
+                        navy: '#0a2540',      
+                        orange: '#ff6a00',    
+                        teal: '#20c997'       
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="text-gray-800 pb-20 md:pb-0">
+
+    <!-- Preloader (Cricket Six Animation) -->
+    <div id="preloader">
+        <div class="cricket-scene">
+            <div id="p-bat" class="cricket-bat"></div>
+            <div id="p-ball" class="cricket-ball"></div>
+        </div>
+        <h2 id="p-text" class="text-white font-black tracking-widest uppercase text-3xl md:text-5xl mt-4 opacity-0 scale-50">
+            Rama Sports
+        </h2>
+    </div>
+
+    <!-- Main Navigation (Desktop Visible, Mobile Hidden) -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center md:justify-between items-center h-16 md:h-20">
+            
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-md bg-white border border-gray-100 overflow-hidden shrink-0">
+                    <img src="logo.png" alt="Rama Sports" class="w-full h-full object-contain p-1">
+                </div>
+                <span class="font-black text-xl md:text-2xl text-navy uppercase tracking-wider">Rama Sports</span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 font-semibold text-navy items-center">
+                <a href="#about" class="hover:text-orange transition">About Us</a>
+                <a href="#booking" class="hover:text-orange transition">Bookings</a>
+                <a href="#academy" class="hover:text-orange transition">Academy</a>
+                <a href="#gallery" class="hover:text-orange transition">Gallery</a>
+                <a href="#contact" class="hover:text-orange transition">Contact</a>
+                <a href="#booking" class="orange-btn px-8 py-3 rounded-full font-bold shadow-lg">
+                    Book a Slot
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE BOTTOM NAVIGATION (App-like Tab Bar) -->
+    <div class="md:hidden fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-lg shadow-[0_-10px_20px_rgba(0,0,0,0.05)] z-[90] safe-bottom rounded-t-3xl border-t border-gray-100 flex justify-between items-center px-2 pt-2 pb-1">
+        <a href="#about" class="flex flex-col items-center p-2 text-gray-500 hover:text-orange flex-1 transition">
+            <i class="fa-solid fa-circle-info text-xl mb-1"></i><span class="text-[10px] font-bold">About</span>
+        </a>
+        <a href="#gallery" class="flex flex-col items-center p-2 text-gray-500 hover:text-orange flex-1 transition">
+            <i class="fa-solid fa-images text-xl mb-1"></i><span class="text-[10px] font-bold">Gallery</span>
+        </a>
+        
+        <!-- Big Center Book Button -->
+        <a href="#booking" class="relative -top-6 flex flex-col items-center justify-center bg-orange text-white w-16 h-16 rounded-full shadow-[0_8px_20px_rgba(255,106,0,0.4)] border-4 border-white flex-shrink-0 hover:scale-105 transition">
+            <i class="fa-solid fa-calendar-plus text-2xl"></i>
+        </a>
+        
+        <a href="#academy" class="flex flex-col items-center p-2 text-gray-500 hover:text-orange flex-1 transition">
+            <i class="fa-solid fa-trophy text-xl mb-1"></i><span class="text-[10px] font-bold">Events</span>
+        </a>
+        <a href="#contact" class="flex flex-col items-center p-2 text-gray-500 hover:text-orange flex-1 transition">
+            <i class="fa-solid fa-envelope text-xl mb-1"></i><span class="text-[10px] font-bold">Contact</span>
+        </a>
+    </div>
+
+    <!-- 1. Hero Section -->
+    <section class="relative h-[85vh] md:h-screen flex items-center justify-center parallax-hero">
+        <div class="absolute inset-0 bg-navy/60"></div>
+        <div class="relative z-10 text-center px-4 max-w-5xl gs-reveal mt-10 md:mt-0">
+            
+            <div class="inline-block bg-orange text-white px-4 py-2 rounded-full text-xs md:text-sm font-bold mb-4 md:mb-6 tracking-widest shadow-lg uppercase">
+                Premium Quality Turf in Pune
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-4 md:mb-6 leading-tight drop-shadow-xl">
+                The City’s Best Turf.<br>
+                <span class="text-orange">Your Best Game.</span>
+            </h1>
+            
+            <p class="text-base md:text-xl lg:text-2xl text-gray-200 mb-8 md:mb-12 font-light px-2">
+                Experience Professional Grade FIFA-Approved surfaces, High-Lumen LED lighting, and effortless booking.
+            </p>
+            
+            <!-- Quick Book Bar -->
+            <div class="bg-white p-3 md:p-4 rounded-3xl shadow-2xl flex flex-col md:flex-row gap-3 md:gap-4 items-center max-w-4xl mx-auto w-[95%]">
+                <select id="heroSport" class="w-full md:w-1/3 p-3 md:p-4 bg-gray-50 border border-gray-200 rounded-xl text-navy focus:outline-none focus:border-orange font-bold text-sm md:text-lg">
+                    <option value="Football">Football</option>
+                    <option value="Box Cricket Turf">Box Cricket Turf</option>
+                    <option value="Basketball (Full Court)">Basketball (Full Court)</option>
+                    <option value="Basketball (Half Court 1)">Basketball (Half Court 1)</option>
+                    <option value="Basketball (Half Court 2)">Basketball (Half Court 2)</option>
+                    <option value="Pickleball A">Pickleball Court A</option>
+                    <option value="Pickleball B">Pickleball Court B</option>
+                </select>
+                <input type="date" id="heroDate" class="w-full md:w-1/3 p-3 md:p-4 bg-gray-50 border border-gray-200 rounded-xl text-navy focus:outline-none focus:border-orange font-bold text-sm md:text-lg">
+                <button onclick="scrollToBook()" class="w-full md:w-1/3 orange-btn p-3 md:p-4 rounded-xl font-black text-center text-sm md:text-lg shadow-md flex justify-center items-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass"></i> <span class="md:hidden lg:inline">Check Availability</span><span class="hidden md:inline lg:hidden">Check</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. About Us Section -->
+    <section id="about" class="py-16 md:py-24 bg-primary relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+                
+                <!-- Image Storytelling -->
+                <div class="relative gs-slide-left z-10">
+                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop" alt="Turf" class="rounded-3xl shadow-2xl border-l-8 border-orange hover-lift object-cover h-[350px] md:h-[600px] w-full">
+                    
+                    <!-- Stats Overlays -->
+                    <div class="absolute -bottom-6 -right-4 md:-bottom-8 md:-right-8 bg-navy text-white p-4 md:p-8 rounded-2xl shadow-2xl border-b-4 border-orange hover-lift">
+                        <p class="text-3xl md:text-5xl font-black text-white mb-1">5,000+</p>
+                        <p class="text-[10px] md:text-sm font-bold uppercase tracking-widest text-orange">Matches Played</p>
+                    </div>
+                    <div class="absolute top-8 -left-8 bg-white text-navy p-6 rounded-2xl shadow-2xl hidden md:block border-l-4 border-teal hover-lift">
+                        <p class="text-3xl font-black text-navy mb-1">10,000+</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-teal">Goals Scored</p>
+                    </div>
+                </div>
+
+                <!-- Text & Specs -->
+                <div class="gs-slide-right z-10">
+                    <h2 class="text-3xl md:text-5xl font-black text-navy mb-4 md:mb-6 leading-tight">
+                        Built by Athletes,<br>
+                        <span class="text-orange">For Athletes.</span>
+                    </h2>
+                    
+                    <p class="text-gray-600 mb-8 leading-relaxed text-sm md:text-lg">
+                        Proudly serving the Kothrud, Pune community. Whether you are a weekend warrior or training for the pros, Rama Sports provides a flawless, high-energy environment where the game never stops. Our mission is to provide a professional-grade playing experience for every player.
+                    </p>
+                    
+                    <!-- Quick Facts Icons -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-orange/10 flex items-center justify-center text-orange text-xl md:text-2xl shrink-0 shadow-inner">
+                                <i class="fa-solid fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-navy text-base md:text-lg">The Lighting</h4>
+                                <p class="text-xs md:text-sm text-gray-500">High-Lumen LED Floodlights for a daylight experience at night.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-orange/10 flex items-center justify-center text-orange text-xl md:text-2xl shrink-0 shadow-inner">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-navy text-base md:text-lg">The Turf</h4>
+                                <p class="text-xs md:text-sm text-gray-500">50mm Monofilament Grass. Premium cushioning for joint protection.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-orange/10 flex items-center justify-center text-orange text-xl md:text-2xl shrink-0 shadow-inner">
+                                <i class="fa-solid fa-shower"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-navy text-base md:text-lg">Amenities</h4>
+                                <p class="text-xs md:text-sm text-gray-500">Clean changing rooms, restrooms, and resting dugouts.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-orange/10 flex items-center justify-center text-orange text-xl md:text-2xl shrink-0 shadow-inner">
+                                <i class="fa-solid fa-bottle-water"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-navy text-base md:text-lg">Hydration</h4>
+                                <p class="text-xs md:text-sm text-gray-500">Chilled RO drinking water available for all players.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Booking Engine -->
+    <section id="booking" class="py-16 md:py-24 bg-white relative z-20 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-10 md:mb-16 gs-reveal">
+                <h2 class="text-3xl md:text-5xl font-black text-navy mb-3 md:mb-4">Book Your Slot. Own the Field.</h2>
+                <p class="text-gray-500 font-semibold mb-6 md:mb-8 text-sm md:text-lg">Want to play longer? You can select multiple 1-hour slots!</p>
+                
+                <!-- Progress Bar -->
+                <div class="flex justify-center items-center gap-2 md:gap-4 max-w-2xl mx-auto text-xs md:text-lg">
+                    <span class="font-black text-orange">Step 1: Time</span>
+                    <div class="h-1 md:h-2 flex-1 bg-orange rounded-full shadow-inner"></div>
+                    <span class="font-bold text-navy">Step 2: Info</span>
+                    <div class="h-1 md:h-2 flex-1 bg-gray-200 rounded-full shadow-inner"></div>
+                    <span class="font-bold text-gray-400">Step 3: Pay</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 md:gap-12">
+                
+                <!-- Left: Booking Grid -->
+                <div class="w-full lg:w-2/3 bg-primary p-4 md:p-10 rounded-[2rem] shadow-2xl gs-slide-up border border-gray-200">
+                    
+                    <!-- Sport Tabs -->
+                    <div class="flex gap-3 md:gap-4 mb-6 md:mb-10 overflow-x-auto pb-4 custom-scrollbar">
+                        <button id="btn-Football" onclick="setSport('Football')" class="sport-tab flex-1 min-w-[130px] md:min-w-[150px] bg-navy text-white py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-navy transition shadow-lg shrink-0">
+                            <i class="fa-solid fa-futbol mr-2 text-orange"></i> Football
+                        </button>
+                        <button id="btn-Box Cricket Turf" onclick="setSport('Box Cricket Turf')" class="sport-tab flex-1 min-w-[130px] md:min-w-[150px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
+                            <i class="fa-solid fa-baseball-bat-ball mr-2 text-orange"></i> Cricket
+                        </button>
+                        <button id="btn-Basketball (Full Court)" onclick="setSport('Basketball (Full Court)')" class="sport-tab flex-1 min-w-[170px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
+                            <i class="fa-solid fa-basketball mr-2 text-orange"></i> BB Full Court
+                        </button>
+                        <button id="btn-Basketball (Half Court 1)" onclick="setSport('Basketball (Half Court 1)')" class="sport-tab flex-1 min-w-[170px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
+                            <i class="fa-solid fa-basketball mr-2 text-orange"></i> BB Half 1
+                        </button>
+                        <button id="btn-Basketball (Half Court 2)" onclick="setSport('Basketball (Half Court 2)')" class="sport-tab flex-1 min-w-[170px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
+                            <i class="fa-solid fa-basketball mr-2 text-orange"></i> BB Half 2
+                        </button>
+                        <button id="btn-Pickleball A" onclick="setSport('Pickleball A')" class="sport-tab flex-1 min-w-[130px] md:min-w-[150px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
+                            <i class="fa-solid fa-table-tennis-paddle-ball mr-2 text-orange"></i> Pickleball A
+                        </button>
+                        <button id="btn-Pickleball B" onclick="setSport('Pickleball B')" class="sport-tab flex-1 min-w-[130px] md:min-w-[150px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
+                            <i class="fa-solid fa-table-tennis-paddle-ball mr-2 text-orange"></i> Pickleball B
+                        </button>
+                    </div>
+
+                    <!-- Date Picker -->
+                    <div class="mb-6 md:mb-10">
+                        <label class="block text-navy font-black mb-2 md:mb-3 text-lg md:text-xl"><i class="fa-solid fa-calendar-days text-orange mr-2"></i> Select Date</label>
+                        <input type="date" id="bookDate" class="w-full p-4 md:p-5 rounded-xl border-2 border-gray-300 focus:outline-none focus:border-orange font-bold text-navy text-base md:text-lg bg-white shadow-sm transition" onchange="generateSlots()">
+                    </div>
+
+                    <!-- 1-Hour Slots Container -->
+                    <div>
+                        <label class="block text-navy font-black mb-4 flex flex-col sm:flex-row justify-between sm:items-center text-base md:text-xl gap-2">
+                            <span><i class="fa-solid fa-clock text-orange mr-2"></i> Available Slots</span>
+                            <span class="text-[10px] md:text-sm font-bold text-gray-500 bg-gray-200 px-3 py-1 rounded-full w-max"><i class="fa-solid fa-square text-gray-400"></i> Gray = Booked</span>
+                        </label>
+                        
+                        <div id="slotContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+                            <div class="col-span-full text-center text-gray-500 bg-white p-6 md:p-8 rounded-xl border-2 border-dashed border-gray-300">
+                                <i class="fa-solid fa-calendar-check text-3xl md:text-4xl mb-3 text-gray-300"></i><br>
+                                <span class="text-sm md:text-base">Please select a date above to view available time slots.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Sticky Summary Card -->
+                <div class="w-full lg:w-1/3">
+                    <div class="sticky top-24 bg-[#f8fbff] border-2 border-[#e1eaf5] p-6 md:p-10 rounded-[2rem] shadow-2xl gs-slide-left">
+                        <h3 class="text-2xl md:text-3xl font-black text-navy border-b-2 border-gray-200 pb-3 md:pb-4 mb-6 md:mb-8">Booking Summary</h3>
+                        
+                        <div class="flex items-center gap-4 mb-6 md:mb-8">
+                            <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white border border-gray-200 shadow-md flex items-center justify-center text-orange text-2xl md:text-4xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p id="sumSport" class="font-black text-navy text-lg md:text-xl mb-1">Football</p>
+                                <p class="text-xs md:text-sm text-gray-500 font-bold">Rama Sports, Kothrud</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4 text-sm md:text-base font-bold text-navy mb-8 md:mb-10">
+                            <div class="flex justify-between border-b border-gray-200 pb-3">
+                                <span>Date:</span> 
+                                <span id="sumDate" class="text-orange text-right">Not selected</span>
+                            </div>
+                            <div class="flex flex-col border-b border-gray-200 pb-3">
+                                <span class="mb-2">Selected Hours:</span>
+                                <span id="sumTime" class="text-orange text-xs md:text-sm space-y-2 block max-h-32 overflow-y-auto pr-2 custom-scrollbar">None</span>
+                            </div>
+                            
+                            <div class="flex justify-between text-lg md:text-xl pt-2 mt-2">
+                                <span>Total Value:</span> 
+                                <span id="sumPrice" class="text-gray-400 font-bold line-through">₹0</span>
+                            </div>
+                            <div class="flex justify-between text-xl md:text-2xl pt-2 mt-2 border-t border-gray-200">
+                                <span>Advance (50%):</span> 
+                                <span id="sumAdvance" class="text-orange font-black">₹0</span>
+                            </div>
+                            <p class="text-[10px] md:text-xs text-teal mt-1 text-right font-bold">* Pay the remaining 50% at the venue.</p>
+                        </div>
+
+                        <!-- Customer Details Form -->
+                        <form id="bookingForm" onsubmit="submitBooking(event)">
+                            <div class="relative mb-4">
+                                <i class="fa-solid fa-user absolute left-4 top-4 text-gray-400"></i>
+                                <input type="text" id="bookName" placeholder="Your Full Name" class="w-full pl-12 p-3 md:p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange font-bold transition text-sm md:text-base" required>
+                            </div>
+                            
+                            <div class="relative mb-6 md:mb-8">
+                                <i class="fa-solid fa-phone absolute left-4 top-4 text-gray-400"></i>
+                                <input type="tel" id="bookPhone" placeholder="Phone Number" class="w-full pl-12 p-3 md:p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange font-bold transition text-sm md:text-base" required>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="w-full orange-btn py-4 md:py-5 rounded-xl font-black text-lg md:text-xl shadow-xl flex justify-center items-center gap-3">
+                                <i class="fa-solid fa-lock"></i> Secure My Slot
+                            </button>
+                        </form>
+                        
+                        <p class="text-[10px] md:text-xs text-center text-gray-500 mt-4 md:mt-6 font-semibold">
+                            By booking, you agree to our <a href="#rules" class="text-orange underline">Cancellation Policy</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Tournaments & Academy -->
+    <section id="academy" class="py-16 md:py-24 parallax-tourney relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 relative z-10 text-white">
+            
+            <div class="text-center mb-10 md:mb-16 gs-reveal">
+                <h2 class="text-4xl md:text-5xl font-black mb-3 md:mb-4">Tournaments & Academy</h2>
+                <p class="text-base md:text-xl text-gray-300 font-light">Compete for glory, or learn from certified professionals.</p>
+            </div>
+            
+            <!-- Dynamic Tournaments (From Database) -->
+            <div id="dynamic-tournaments" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Fallback Loading State -->
+                <div class="col-span-full text-center py-20">
+                    <i class="fa-solid fa-spinner fa-spin text-orange text-4xl md:text-5xl"></i>
+                    <p class="mt-4 font-bold text-sm md:text-base">Loading Live Events...</p>
+                </div>
+            </div>
+
+            <!-- ACADEMY DETAILS (Updated strictly to owner request) -->
+            <div class="mt-10 md:mt-16 bg-navy/90 backdrop-blur-md border border-white/10 p-8 md:p-12 rounded-[2rem] shadow-2xl gs-slide-up text-center">
+                <h3 class="text-3xl md:text-5xl font-black text-white mb-4">Rama Sports Academy</h3>
+                <p class="text-orange font-bold text-lg md:text-xl mb-8">Professional Coaching & Dedicated Development</p>
+                
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 text-white">
+                    <div class="bg-white/10 p-6 md:p-8 rounded-2xl border border-white/20 w-full md:w-1/3 hover:bg-white/20 transition">
+                        <i class="fa-solid fa-child-reaching text-4xl md:text-5xl text-teal mb-4"></i>
+                        <h4 class="text-xl md:text-2xl font-black">Age Group</h4>
+                        <p class="text-gray-300 font-bold mt-2 text-sm md:text-base">Boys & Girls<br>Ages 4 to 16</p>
+                    </div>
+                    <div class="bg-white/10 p-6 md:p-8 rounded-2xl border border-white/20 w-full md:w-1/3 hover:bg-white/20 transition">
+                        <i class="fa-solid fa-clock text-4xl md:text-5xl text-orange mb-4"></i>
+                        <h4 class="text-xl md:text-2xl font-black">Dedicated Batches</h4>
+                        <p class="text-gray-300 font-bold mt-2 text-sm md:text-base">Evening Sessions<br>5:00 PM – 7:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Academy Inquiry Form -->
+            <div class="mt-10 bg-white p-6 md:p-8 rounded-3xl shadow-2xl gs-slide-left text-navy max-w-3xl mx-auto">
+                <h3 class="text-2xl font-black text-navy mb-6 border-b-2 border-gray-200 pb-4">Academy Admission Inquiry</h3>
+                <form onsubmit="submitAcademyInquiry(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-500 mb-2">Parent / Guardian Name</label>
+                        <input type="text" id="acName" class="w-full bg-gray-50 border-2 border-gray-200 p-4 rounded-xl text-navy font-bold outline-none focus:border-orange transition" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-500 mb-2">Phone Number</label>
+                        <input type="tel" id="acPhone" class="w-full bg-gray-50 border-2 border-gray-200 p-4 rounded-xl text-navy font-bold outline-none focus:border-orange transition" required>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-500 mb-2">Child's Age (4-16)</label>
+                            <input type="number" id="acAge" min="4" max="16" class="w-full bg-gray-50 border-2 border-gray-200 p-4 rounded-xl text-navy font-bold outline-none focus:border-orange transition" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-500 mb-2">Sport</label>
+                            <select id="acSport" class="w-full bg-gray-50 border-2 border-gray-200 p-4 rounded-xl text-navy font-bold outline-none focus:border-orange transition">
+                                <option>Football</option>
+                                <option>Cricket</option>
+                                <option>Basketball</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full orange-btn text-white py-4 rounded-xl font-black text-lg shadow-xl mt-4">
+                        Send Inquiry <i class="fa-solid fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. Reviews Section -->
+    <section class="py-16 md:py-24 bg-primary relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Scorecard Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 md:mb-10 gs-reveal border-b-2 border-gray-200 pb-6 md:pb-8">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-black text-navy mb-4 md:mb-6">Player Stories</h2>
+                    <div class="flex items-center gap-4 md:gap-6">
+                        <div class="text-5xl md:text-6xl font-black text-orange drop-shadow-md">4.8/5</div>
+                        <div>
+                            <div class="text-orange text-lg md:text-2xl mb-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                            <p class="text-xs md:text-sm font-bold text-navy uppercase tracking-widest flex items-center">
+                                <i class="fa-brands fa-google mr-2 text-base md:text-lg"></i> Verified Reviews
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Updated Google Review Link -->
+                <a href="https://www.google.com/search?q=rama+sports&rlz=1C1CHBD_enIN1161IN1161&oq=rama+sports&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDINCAEQLhivARjHARiABDINCAIQLhivARjHARiABDINCAMQLhivARjHARiABDIHCAQQABiABDINCAUQLhivARjHARiABDINCAYQLhivARjHARiABDINCAcQLhivARjHARiABDINCAgQLhivARjHARiABNIBCDIxMzRqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8&zx=1778337072630#sv=CAESzQEKuQEStgEKd0FNbjMteVN6S2p3UnNqbW1rWUdOaTYwd0NOVkF1VEdSVDNtaXdyc3NYR1ZSOTVqT3hFZElkbGpRSlllM3F0NDdWdFFldERsVUJWWHBuVlZGUWNNM3poekwxTk1RTnJhLUlFb1EybDBxQ1ZiOVJEdUFLUElrendvEhdNVVhfYWNUckc4Q05zZU1Qdm9uNjhBcxoiQUpLTEZtTHpfSXBKdmNBZTZaRnhGWDJLbzRRRUFGdUFJdxIEODA1MRoBMyoAMAA4AUAAGAAg09jp4gJKAhAC" target="_blank" class="w-full md:w-auto text-center border-2 border-navy text-navy hover:bg-navy hover:text-white transition px-6 py-3 md:px-8 md:py-4 rounded-full font-black shadow-sm flex items-center justify-center">
+                    <i class="fa-solid fa-pen mr-2 text-orange"></i> Write a Review
+                </a>
+            </div>
+        </div>
+
+        <!-- Sliding Marquee Grid for visual reviews -->
+        <div class="marquee-wrapper mt-4 md:mt-6 gs-reveal">
+            <div class="marquee-track">
+                
+                <!-- Set 1 -->
+                <div class="marquee-content">
+                    <div class="review-card bg-white p-6 md:p-8 rounded-3xl shadow-xl border-t-8 border-orange flex flex-col hover-lift h-full min-h-[250px] md:min-h-[280px]">
+                        <div class="flex items-center gap-4 mb-4 md:mb-6">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-navy flex items-center justify-center text-white font-black text-lg md:text-xl shadow-md shrink-0">RD</div>
+                            <div>
+                                <h4 class="font-black text-navy text-base md:text-lg">Rahul D.</h4>
+                                <p class="text-[10px] md:text-xs text-orange font-bold uppercase tracking-wider"><i class="fa-solid fa-medal mr-1"></i> Regular Cricketer</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 font-medium leading-relaxed text-sm md:text-base">
+                            "The lighting here is phenomenal. Playing Box Cricket at night feels exactly like a day match. The turf quality is gentle on the knees. Highly recommend!"
+                        </p>
+                    </div>
+                    
+                    <div class="review-card relative rounded-3xl overflow-hidden shadow-xl group hover-lift border-4 border-white h-[250px] md:h-[280px]">
+                        <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=600&auto=format&fit=crop" alt="Team" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy to-transparent opacity-90"></div>
+                        <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-white">
+                            <div class="text-orange text-base md:text-lg mb-1 md:mb-2 shadow-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="font-black text-base md:text-lg">"Best turf in Kothrud!"</p>
+                            <p class="text-xs md:text-sm font-semibold text-gray-300">- Team Spartans</p>
+                        </div>
+                    </div>
+
+                    <div class="review-card bg-white p-6 md:p-8 rounded-3xl shadow-xl border-t-8 border-navy flex flex-col hover-lift h-full min-h-[250px] md:min-h-[280px]">
+                        <div class="flex items-center gap-4 mb-4 md:mb-6">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-200 flex items-center justify-center text-navy font-black text-lg md:text-xl shadow-md shrink-0">AS</div>
+                            <div>
+                                <h4 class="font-black text-navy text-base md:text-lg">Amit S.</h4>
+                                <p class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-wider">Basketball Player</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 font-medium leading-relaxed text-sm md:text-base">
+                            "Court grip is amazing for Basketball. Very easy booking process online and the staff is super cooperative. My weekend sports spot is officially sorted."
+                        </p>
+                    </div>
+
+                    <div class="review-card bg-white p-6 md:p-8 rounded-3xl shadow-xl border-t-8 border-teal flex flex-col hover-lift h-full min-h-[250px] md:min-h-[280px]">
+                        <div class="flex items-center gap-4 mb-4 md:mb-6">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-navy flex items-center justify-center text-white font-black text-lg md:text-xl shadow-md shrink-0">SK</div>
+                            <div>
+                                <h4 class="font-black text-navy text-base md:text-lg">Sneha K.</h4>
+                                <p class="text-[10px] md:text-xs text-teal font-bold uppercase tracking-wider">Pickleball Enthusiast</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 font-medium leading-relaxed text-sm md:text-base">
+                            "Amazing facility! The pickleball courts are top-notch and the staff is incredibly helpful. Clean, energetic, and highly recommended for tournaments."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Set 2 (Duplicate for Seamless Loop) -->
+                <div class="marquee-content" aria-hidden="true">
+                    <div class="review-card bg-white p-6 md:p-8 rounded-3xl shadow-xl border-t-8 border-orange flex flex-col hover-lift h-full min-h-[250px] md:min-h-[280px]">
+                        <div class="flex items-center gap-4 mb-4 md:mb-6">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-navy flex items-center justify-center text-white font-black text-lg md:text-xl shadow-md shrink-0">RD</div>
+                            <div>
+                                <h4 class="font-black text-navy text-base md:text-lg">Rahul D.</h4>
+                                <p class="text-[10px] md:text-xs text-orange font-bold uppercase tracking-wider"><i class="fa-solid fa-medal mr-1"></i> Regular Cricketer</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 font-medium leading-relaxed text-sm md:text-base">
+                            "The lighting here is phenomenal. Playing Box Cricket at night feels exactly like a day match. The turf quality is gentle on the knees. Highly recommend!"
+                        </p>
+                    </div>
+                    
+                    <div class="review-card relative rounded-3xl overflow-hidden shadow-xl group hover-lift border-4 border-white h-[250px] md:h-[280px]">
+                        <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=600&auto=format&fit=crop" alt="Team" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy to-transparent opacity-90"></div>
+                        <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-white">
+                            <div class="text-orange text-base md:text-lg mb-1 md:mb-2 shadow-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="font-black text-base md:text-lg">"Best turf in Kothrud!"</p>
+                            <p class="text-xs md:text-sm font-semibold text-gray-300">- Team Spartans</p>
+                        </div>
+                    </div>
+
+                    <div class="review-card bg-white p-6 md:p-8 rounded-3xl shadow-xl border-t-8 border-navy flex flex-col hover-lift h-full min-h-[250px] md:min-h-[280px]">
+                        <div class="flex items-center gap-4 mb-4 md:mb-6">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-200 flex items-center justify-center text-navy font-black text-lg md:text-xl shadow-md shrink-0">AS</div>
+                            <div>
+                                <h4 class="font-black text-navy text-base md:text-lg">Amit S.</h4>
+                                <p class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-wider">Basketball Player</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 font-medium leading-relaxed text-sm md:text-base">
+                            "Court grip is amazing for Basketball. Very easy booking process online and the staff is super cooperative. My weekend sports spot is officially sorted."
+                        </p>
+                    </div>
+
+                    <div class="review-card bg-white p-6 md:p-8 rounded-3xl shadow-xl border-t-8 border-teal flex flex-col hover-lift h-full min-h-[250px] md:min-h-[280px]">
+                        <div class="flex items-center gap-4 mb-4 md:mb-6">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-navy flex items-center justify-center text-white font-black text-lg md:text-xl shadow-md shrink-0">SK</div>
+                            <div>
+                                <h4 class="font-black text-navy text-base md:text-lg">Sneha K.</h4>
+                                <p class="text-[10px] md:text-xs text-teal font-bold uppercase tracking-wider">Pickleball Enthusiast</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 font-medium leading-relaxed text-sm md:text-base">
+                            "Amazing facility! The pickleball courts are top-notch and the staff is incredibly helpful. Clean, energetic, and highly recommended for tournaments."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Gallery Section (Updated with Expandable Photos) -->
+    <section id="gallery" class="py-16 md:py-24 bg-white relative border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-black text-navy text-center mb-6 md:mb-8 gs-reveal">The Facility</h2>
+            
+            <!-- Gallery Filters -->
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-8 md:mb-12 gs-reveal">
+                <button onclick="filterGallery('all')" class="gallery-btn px-4 py-2 md:px-6 md:py-2 rounded-full text-sm md:text-base font-bold bg-navy text-white transition">All Photos</button>
+                <button onclick="filterGallery('action')" class="gallery-btn px-4 py-2 md:px-6 md:py-2 rounded-full text-sm md:text-base font-bold bg-gray-200 text-navy hover:bg-orange hover:text-white transition">Action</button>
+                <button onclick="filterGallery('facility')" class="gallery-btn px-4 py-2 md:px-6 md:py-2 rounded-full text-sm md:text-base font-bold bg-gray-200 text-navy hover:bg-orange hover:text-white transition">Facility</button>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 auto-rows-[150px] md:auto-rows-[250px]">
+                
+                <!-- Initial 4 Visible Photos -->
+                <div class="gallery-item action col-span-2 row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift gs-slide-left shadow-lg">
+                    <img src="turf1.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-navy/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center backdrop-blur-sm">
+                        <span class="text-white font-black text-lg md:text-2xl border-4 border-orange px-4 py-2 md:px-8 md:py-3 rounded-full shadow-2xl">Pro Football Turf</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item action relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift gs-slide-down shadow-lg">
+                    <img src="entrance.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                </div>
+                
+                <div class="gallery-item action relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift gs-slide-right shadow-lg">
+                    <img src="basketball1.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                </div>
+                
+                <div class="gallery-item facility col-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift gs-slide-up shadow-lg">
+                    <img src="layout.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-white font-black bg-orange px-3 py-1 md:px-4 md:py-2 rounded-lg shadow-xl text-xs md:text-lg">
+                        Night Vision LED
+                    </div>
+                </div>
+
+                <!-- Hidden Extra Photos -->
+                <div class="gallery-item action extra-photo hidden relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift shadow-lg">
+                    <img src="turf2.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                </div>
+
+                <div class="gallery-item facility extra-photo hidden relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift shadow-lg">
+                    <img src="turf3.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                </div>
+
+                <div class="gallery-item facility extra-photo hidden col-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift shadow-lg">
+                    <img src="turf4.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-white font-black bg-teal px-3 py-1 md:px-4 md:py-2 rounded-lg shadow-xl text-xs md:text-lg">
+                        Premium Turf Overview
+                    </div>
+                </div>
+
+                <div class="gallery-item facility extra-photo hidden col-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group hover-lift shadow-lg">
+                    <img src="basketball2.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                </div>
+                
+            </div>
+
+            <!-- More Photos Button -->
+            <div class="text-center mt-10 md:mt-14 gs-reveal">
+                <button id="morePhotosBtn" onclick="showMorePhotos()" class="orange-btn px-8 md:px-10 py-3 md:py-4 rounded-full font-black text-base md:text-lg shadow-xl flex items-center justify-center mx-auto gap-2">
+                    View More Photos <i class="fa-solid fa-chevron-down"></i>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 7. Contact Us & Detailed Rules -->
+    <section id="contact" class="py-16 md:py-24 bg-primary relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col lg:flex-row shadow-2xl rounded-3xl overflow-hidden gs-reveal bg-white border border-gray-200">
+                
+                <!-- Left Sidebar (Contact Info) -->
+                <div class="w-full lg:w-2/5 bg-navy text-white p-8 md:p-12 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 md:w-48 h-32 md:h-48 bg-orange/20 rounded-bl-full pointer-events-none"></div>
+                    
+                    <h3 class="text-3xl md:text-4xl font-black mb-6 md:mb-8 relative z-10">Let's Talk</h3>
+                    
+                    <div class="space-y-6 md:space-y-8 mb-10 md:mb-16 relative z-10">
+                        <div class="flex items-start gap-4 md:gap-5">
+                            <i class="fa-solid fa-location-dot text-orange text-2xl md:text-3xl mt-1 shrink-0"></i>
+                            <div>
+                                <p class="font-bold text-base md:text-lg mb-1">Rama Sports</p>
+                                <p class="text-gray-300 font-medium leading-relaxed text-sm md:text-base">Sr. No. 127/1A Paud Road, MIT School Rd, Kothrud, Pune, Maharashtra - 411038</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 md:gap-5">
+                            <i class="fa-solid fa-phone text-orange text-xl md:text-2xl shrink-0"></i>
+                            <a href="tel:9156194847" class="text-xl md:text-2xl font-black hover:text-orange transition tracking-wide">+91 91561 94847</a>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/919156194847" target="_blank" class="relative z-10 w-full block text-center bg-[#25D366] text-white py-4 md:py-5 rounded-xl font-black text-lg md:text-xl hover:bg-[#1ebe5d] transition shadow-2xl hover-lift">
+                        <i class="fa-brands fa-whatsapp mr-2 text-xl md:text-2xl"></i> Chat on WhatsApp
+                    </a>
+                </div>
+
+                <!-- Right Form -->
+                <div class="w-full lg:w-3/5 p-8 md:p-12 lg:p-16 relative bg-white">
+                    <h3 class="text-2xl md:text-3xl font-black text-navy mb-8 border-b-4 border-orange pb-3 md:pb-4 inline-block">Send an Inquiry</h3>
+                    <form id="contactForm" onsubmit="submitContact(event)" class="space-y-6 md:space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                            <div>
+                                <label class="block text-xs md:text-sm font-black text-navy mb-2 uppercase tracking-widest">Full Name</label>
+                                <input type="text" id="c_name" class="w-full border-b-2 border-gray-300 py-2 md:py-3 font-bold text-base md:text-lg focus:outline-none focus:border-orange bg-transparent transition" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs md:text-sm font-black text-navy mb-2 uppercase tracking-widest">Phone Number</label>
+                                <input type="tel" id="c_phone" class="w-full border-b-2 border-gray-300 py-2 md:py-3 font-bold text-base md:text-lg focus:outline-none focus:border-orange bg-transparent transition" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs md:text-sm font-black text-navy mb-2 uppercase tracking-widest">Subject</label>
+                            <select id="c_subject" class="w-full border-b-2 border-gray-300 py-2 md:py-3 font-bold text-base md:text-lg focus:outline-none focus:border-orange bg-transparent transition cursor-pointer">
+                                <option>Bulk Booking Inquiry</option>
+                                <option>Tournament Entry</option>
+                                <option>Academy Details</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs md:text-sm font-black text-navy mb-2 uppercase tracking-widest">Message</label>
+                            <textarea id="c_message" rows="3" class="w-full border-b-2 border-gray-300 py-2 md:py-3 font-bold text-base md:text-lg focus:outline-none focus:border-orange bg-transparent transition resize-none" required></textarea>
+                        </div>
+                        <button type="submit" id="contactBtn" class="orange-btn w-full md:w-auto px-8 md:px-10 py-4 rounded-xl font-black text-base md:text-lg mt-4 shadow-xl flex items-center justify-center gap-3">
+                            Send Message <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Rules & Policies -->
+            <div id="rules" class="mt-10 md:mt-16 bg-white p-6 md:p-10 rounded-3xl shadow-lg border border-gray-200 gs-slide-up">
+                <h4 class="text-2xl md:text-3xl font-black text-navy mb-6 md:mb-8 border-b-2 border-gray-100 pb-3 md:pb-4">
+                    <i class="fa-solid fa-file-contract text-orange mr-2 md:mr-3"></i> Rules & Policies
+                </h4>
+                
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                    <div>
+                        <h5 class="font-black text-navy text-lg md:text-xl mb-3 md:mb-4 uppercase tracking-widest">General Rules</h5>
+                        <ul class="list-none space-y-3 md:space-y-4 text-gray-600 font-medium text-sm md:text-base">
+                            <li class="flex items-start"><i class="fa-solid fa-check text-orange mt-1 mr-3 shrink-0"></i> Please wear appropriate sports gear.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-orange mt-1 mr-3 shrink-0"></i> Be present at the venue 10 minutes prior to the slot time.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-black text-navy text-lg md:text-xl mb-3 md:mb-4 uppercase tracking-widest">Cancellation Policy</h5>
+                        <ul class="list-none space-y-3 md:space-y-4 text-gray-600 font-medium text-sm md:text-base">
+                            <li class="flex items-start"><i class="fa-solid fa-ban text-red-500 mt-1 mr-3 shrink-0"></i> Non Refundable if cancellation is made less than 6 hours from start time.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-rotate-left text-teal mt-1 mr-3 shrink-0"></i> 100% Refundable if cancellation is made 6 hours before start time.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map -->
+    <div class="w-full h-[300px] md:h-[500px] grayscale hover:grayscale-0 transition duration-700 gs-reveal">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.567086082215!2d73.8206049!3d18.5078575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf71ec5d7279%3A0x9d00d33179968bc!2sRama%20Sports%20Pune!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <!-- Pre-Footer Action Bar -->
+    <div class="bg-orange py-10 md:py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6">
+            <h2 class="text-2xl md:text-4xl font-black text-white">Ready for your next game?</h2>
+            <button onclick="scrollToBook()" class="w-full md:w-auto bg-navy text-white px-8 md:px-10 py-4 rounded-full font-black text-lg md:text-xl shadow-2xl hover:scale-105 transition">
+                Book a Slot Now
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-navy pt-16 md:pt-20 pb-8 md:pb-10 text-gray-300 relative border-t-4 border-orange">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <div class="grid md:grid-cols-3 gap-10 md:gap-16 border-b border-gray-700 pb-10 md:pb-16 mb-8 md:mb-10 text-center md:text-left">
+                
+                <!-- Column 1 -->
+                <div>
+                    <span class="font-black text-2xl md:text-3xl text-white uppercase tracking-wider mb-4 md:mb-6 flex items-center justify-center md:justify-start">
+                        <img src="logo.png" alt="Rama Sports Logo" class="h-10 md:h-12 mr-3 bg-white rounded-lg p-1"> Rama Sports
+                    </span>
+                    <p class="text-sm md:text-base mb-6 md:mb-8 leading-relaxed font-medium">
+                        The premier sports destination for Pune athletes. Professional turf, high-energy vibes, and a community built around the love for the game.
+                    </p>
+                    <div class="flex gap-4 justify-center md:justify-start">
+                        <i class="fa-brands fa-cc-visa text-3xl md:text-4xl text-gray-500 hover:text-white transition cursor-pointer"></i>
+                        <i class="fa-brands fa-cc-mastercard text-3xl md:text-4xl text-gray-500 hover:text-white transition cursor-pointer"></i>
+                        <i class="fa-brands fa-google-pay text-3xl md:text-4xl text-gray-500 hover:text-white transition cursor-pointer"></i>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div class="hidden md:block">
+                    <h4 class="text-white font-black text-lg md:text-xl mb-4 md:mb-6 uppercase tracking-widest border-l-4 border-orange pl-3">Quick Links</h4>
+                    <ul class="space-y-3 md:space-y-4 font-bold text-sm md:text-base">
+                        <li><a href="#about" class="hover:text-orange transition flex items-center"><i class="fa-solid fa-angle-right mr-2 text-orange"></i> About Us</a></li>
+                        <li><a href="#booking" class="hover:text-orange transition flex items-center"><i class="fa-solid fa-angle-right mr-2 text-orange"></i> Book a Slot</a></li>
+                        <li><a href="#academy" class="hover:text-orange transition flex items-center"><i class="fa-solid fa-angle-right mr-2 text-orange"></i> Tournaments</a></li>
+                        <li><a href="#rules" class="hover:text-orange transition flex items-center"><i class="fa-solid fa-angle-right mr-2 text-orange"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-white font-black text-lg md:text-xl mb-4 md:mb-6 uppercase tracking-widest border-l-4 border-transparent md:border-orange pl-0 md:pl-3">Connect</h4>
+                    <p class="text-2xl md:text-3xl font-black text-white mb-2 md:mb-3 hover:text-orange transition cursor-pointer">+91 91561 94847</p>
+                    <p class="text-sm md:text-base mb-6 md:mb-8 font-medium"><i class="fa-solid fa-location-dot text-orange mr-2"></i> Kothrud, Pune</p>
+                    
+                    <a href="admin.html" class="inline-block border border-gray-600 text-xs md:text-sm font-bold px-4 py-2 md:px-6 md:py-3 rounded-xl hover:bg-orange hover:border-orange transition text-white flex items-center justify-center shadow-lg mx-auto md:mx-0 w-max">
+                        <i class="fa-solid fa-lock mr-2"></i> Admin Login
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center md:text-left text-xs md:text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4 font-semibold pb-[env(safe-area-inset-bottom)] md:pb-0">
+                <p>Copyright © 2024 Rama Sports.</p>
+                <p class="flex items-center"><i class="fa-solid fa-shield-halved text-teal mr-2 text-base md:text-lg"></i> Secure Online Booking</p>
+            </div>
+            
+        </div>
+    </footer>
+
+    <!-- Tournament Registration Modal -->
+    <div id="tourneyModal" class="fixed inset-0 bg-black/80 z-[120] justify-center items-center backdrop-blur-md p-4 hidden">
+        <div class="bg-white p-6 md:p-10 rounded-3xl w-full max-w-lg shadow-2xl relative border-t-8 border-navy">
+            <button onclick="closeTourneyModal()" class="absolute top-4 right-4 md:top-6 md:right-6 text-gray-400 hover:text-red-500 text-2xl transition"><i class="fa-solid fa-times"></i></button>
+            
+            <h2 class="text-2xl md:text-3xl font-black text-navy mb-1 md:mb-2">Register Team</h2>
+            <p id="tModName" class="text-orange font-black mb-6 md:mb-8 border-b-2 border-gray-100 pb-3 md:pb-4 text-lg md:text-xl">Tournament Name</p>
+            
+            <form onsubmit="submitTourneyReg(event)" class="space-y-4 md:space-y-6">
+                <div>
+                    <label class="block text-xs md:text-sm font-bold text-navy mb-1 md:mb-2 uppercase tracking-widest">Team Name</label>
+                    <input type="text" id="tTeamName" class="w-full bg-gray-50 border-2 border-gray-200 p-3 md:p-4 rounded-xl outline-none focus:border-orange font-bold transition text-sm md:text-base" required>
+                </div>
+                <div>
+                    <label class="block text-xs md:text-sm font-bold text-navy mb-1 md:mb-2 uppercase tracking-widest">Captain Name</label>
+                    <input type="text" id="tCaptName" class="w-full bg-gray-50 border-2 border-gray-200 p-3 md:p-4 rounded-xl outline-none focus:border-orange font-bold transition text-sm md:text-base" required>
+                </div>
+                <div>
+                    <label class="block text-xs md:text-sm font-bold text-navy mb-1 md:mb-2 uppercase tracking-widest">Phone Number</label>
+                    <input type="tel" id="tPhone" class="w-full bg-gray-50 border-2 border-gray-200 p-3 md:p-4 rounded-xl outline-none focus:border-orange font-bold transition text-sm md:text-base" required>
+                </div>
+                
+                <button type="submit" class="w-full bg-navy text-white px-6 py-4 md:px-8 md:py-5 rounded-xl font-black text-lg md:text-xl hover:bg-orange transition shadow-xl mt-4 flex justify-center items-center gap-3">
+                    Submit Entry <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Javascript Logic (Firebase Modular SDK v9) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Your Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCDRC8LR1VYEF5nsg2PxHBHqkYtRXiXj4",
+            authDomain: "rama-sports-b1335.firebaseapp.com",
+            projectId: "rama-sports-b1335",
+            storageBucket: "rama-sports-b1335.firebasestorage.app",
+            messagingSenderId: "232323185339",
+            appId: "1:232323185339:web:6c1cf7166c70dc7102479e",
+            measurementId: "G-V2CQHLG8JG"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // State Variables
+        let currentSport = 'Football';
+        let selectedDate = '';
+        let selectedSlotsArray = [];
+        let pendingBookingPayload = null;
+        window.showingAllGallery = false;
+
+        // Pricing Configuration
+        const pricingLogic = {
+            'Football': { price: 1200 },
+            'Box Cricket Turf': { price: 1000 },
+            'Basketball (Full Court)': { price: 800 },
+            'Basketball (Half Court 1)': { price: 400 },
+            'Basketball (Half Court 2)': { price: 400 },
+            'Pickleball A': { price: 400 },
+            'Pickleball B': { price: 400 }
+        };
+
+        function formatTime(h) {
+            const ampm = h >= 12 ? 'PM' : 'AM'; 
+            let hr = h % 12; 
+            if (hr === 0) hr = 12;
+            return `${hr < 10 ? '0'+hr : hr}:00 ${ampm}`;
+        }
+
+        // Exposing specific functions to window so HTML inline onclick handlers work
+        window.scrollToBook = () => {
+            window.setSport(document.getElementById('heroSport').value);
+            if (document.getElementById('heroDate').value) { 
+                document.getElementById('bookDate').value = document.getElementById('heroDate').value; 
+                window.generateSlots(); 
+            }
+            document.getElementById('booking').scrollIntoView({behavior: 'smooth'});
+        };
+
+        window.setSport = (sport) => {
+            currentSport = sport; 
+            document.getElementById('sumSport').innerText = sport;
+            
+            document.querySelectorAll('.sport-tab').forEach(tab => { 
+                tab.classList.remove('bg-navy', 'text-white', 'border-navy'); 
+                tab.classList.add('bg-white', 'text-navy', 'border-gray-200'); 
+            });
+            const activeTab = document.getElementById(`btn-${sport}`);
+            if (activeTab) { 
+                activeTab.classList.remove('bg-white', 'text-navy', 'border-gray-200'); 
+                activeTab.classList.add('bg-navy', 'text-white', 'border-navy'); 
+            }
+            window.generateSlots();
+        };
+
+        window.generateSlots = async () => {
+            const dateInput = document.getElementById('bookDate').value;
+            if (!dateInput) return;
+            
+            selectedDate = dateInput; 
+            document.getElementById('sumDate').innerText = selectedDate;
+            selectedSlotsArray = []; 
+            window.updateSummaryUI();
+            
+            const container = document.getElementById('slotContainer');
+            
+            let loadingIcon = 'fa-futbol';
+            let iconColor = 'text-orange';
+            if (currentSport.includes('Cricket')) { loadingIcon = 'fa-baseball-bat-ball'; iconColor = 'text-red-500'; }
+            if (currentSport.includes('Pickle')) { loadingIcon = 'fa-table-tennis-paddle-ball'; iconColor = 'text-teal-400'; }
+            if (currentSport.includes('Basket')) { loadingIcon = 'fa-basketball'; iconColor = 'text-orange'; }
+
+            container.innerHTML = `
+                <div class="col-span-full flex flex-col justify-center items-center py-10">
+                    <i class="fa-solid ${loadingIcon} animate-custom-bounce ${iconColor} text-5xl mb-4"></i>
+                    <div class="w-8 h-2 bg-gray-200 rounded-full animate-pulse"></div>
+                    <span class="font-bold text-gray-500 mt-4 animate-pulse text-sm md:text-base">Warming up the pitch...</span>
+                </div>
+            `;
+
+            try {
+                // Fetch bookings from Firestore for this specific date
+                const q = query(collection(db, "bookings"), where("date", "==", selectedDate));
+                const querySnapshot = await getDocs(q);
+                let blocks = [];
+                querySnapshot.forEach((doc) => { blocks.push(doc.data()); });
+
+                container.innerHTML = ''; 
+                const price = pricingLogic[currentSport].price;
+
+                // Court Collision Groupings
+                const fullBB = 'Basketball (Full Court)';
+                const bbH1 = 'Basketball (Half Court 1)';
+                const bbH2 = 'Basketball (Half Court 2)';
+                const pbA = 'Pickleball A';
+                const pbB = 'Pickleball B';
+
+                const group1 = [bbH1, pbA]; // Physically the same space
+                const group2 = [bbH2, pbB]; // Physically the same space
+
+                // Loop from 6 AM to 10 PM
+                for(let i = 6; i < 22; i++) {
+                    let timeLabel = `${formatTime(i)} - ${formatTime(i+1)}`;
+                    
+                    // Specific Logic for Basketball vs Pickleball Conflicts
+                    let isBlocked = blocks.some(b => {
+                        if(!b.timeSlot || !b.timeSlot.includes(timeLabel)) return false;
+                        
+                        const booked = b.sport;
+                        const viewing = currentSport;
+
+                        // Same exact sport overlap
+                        if (booked === viewing) return true;
+
+                        // If viewing Full BB, block if ANY of the sub-courts are booked
+                        if (viewing === fullBB && (group1.includes(booked) || group2.includes(booked))) return true;
+
+                        // If viewing a sub-court, block if Full BB is booked
+                        if ((group1.includes(viewing) || group2.includes(viewing)) && booked === fullBB) return true;
+
+                        // If viewing a Group 1 court, block if the OTHER Group 1 court is booked
+                        if (group1.includes(viewing) && group1.includes(booked)) return true;
+
+                        // If viewing a Group 2 court, block if the OTHER Group 2 court is booked
+                        if (group2.includes(viewing) && group2.includes(booked)) return true;
+
+                        return false;
+                    });
+                    
+                    createSlotCard(timeLabel, price, container, isBlocked);
+                }
+            } catch(e) {
+                console.error("Error fetching slots", e);
+                container.innerHTML = `<div class="col-span-full text-center text-red-500 font-bold">Failed to load slots. Please check connection.</div>`;
+            }
+        };
+
+        function createSlotCard(timeStr, price, container, isBlocked) {
+            const div = document.createElement('div');
+            div.className = `slot-card p-3 md:p-4 rounded-xl text-center flex flex-col justify-center items-center h-16 md:h-24 ${isBlocked ? 'slot-booked' : ''}`;
+            div.innerHTML = `<span class="font-black text-xs md:text-base mb-1">${timeStr}</span><span class="text-[10px] md:text-sm font-bold">₹${price}</span>`;
+            
+            if (!isBlocked) {
+                div.onclick = () => {
+                    const idx = selectedSlotsArray.findIndex(s => s.time === timeStr);
+                    if (idx > -1) { 
+                        selectedSlotsArray.splice(idx, 1); 
+                        div.classList.remove('slot-selected'); 
+                    } else { 
+                        selectedSlotsArray.push({time: timeStr, price: price}); 
+                        div.classList.add('slot-selected'); 
+                    }
+                    window.updateSummaryUI();
+                };
+            }
+            container.appendChild(div);
+        }
+
+        window.updateSummaryUI = () => {
+            const timeContainer = document.getElementById('sumTime'); 
+            const priceContainer = document.getElementById('sumPrice');
+            const advanceContainer = document.getElementById('sumAdvance');
+            
+            if (selectedSlotsArray.length === 0) { 
+                timeContainer.innerHTML = "None"; 
+                priceContainer.innerHTML = "₹0"; 
+                advanceContainer.innerHTML = "₹0"; 
+                return; 
+            }
+            
+            selectedSlotsArray.sort((a,b) => a.time.localeCompare(b.time));
+            
+            let html = ''; 
+            let tot = 0;
+            selectedSlotsArray.forEach(s => { 
+                html += `<span class="bg-orange/10 px-2 py-1 rounded inline-block mb-1 w-full border border-orange/20">${s.time} <span class="float-right font-black">₹${s.price}</span></span>`; 
+                tot += s.price; 
+            });
+            
+            timeContainer.innerHTML = html; 
+            priceContainer.innerHTML = `₹${tot}`;
+            advanceContainer.innerHTML = `₹${Math.round(tot / 2)}`;
+        };
+
+        window.submitBooking = async (e) => {
+            e.preventDefault();
+            if (selectedSlotsArray.length === 0) return alert('Please select at least one hourly slot to book.');
+
+            const merchantUpiId = "ramasportspune@okicici"; 
+            const merchantName = "Rama Sports";
+
+            const btn = document.getElementById('submitBtn'); 
+            const orig = btn.innerHTML; 
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating Payment...`; 
+            btn.disabled = true;
+
+            const combinedTimes = selectedSlotsArray.map(s => s.time).join(', ');
+            const totalAmt = selectedSlotsArray.reduce((acc, curr) => acc + curr.price, 0);
+            const advanceAmt = Math.round(totalAmt / 2);
+
+            pendingBookingPayload = { 
+                name: document.getElementById('bookName').value, 
+                phone: document.getElementById('bookPhone').value, 
+                sport: currentSport, 
+                date: selectedDate, 
+                timeSlot: combinedTimes, 
+                price: totalAmt, 
+                source: 'Website',
+                createdAt: serverTimestamp()
+            };
+
+            const upiString = `upi://pay?pa=${merchantUpiId}&pn=${encodeURIComponent(merchantName)}&am=${advanceAmt}&cu=INR&tn=Turf Booking ${selectedDate} Advance`;
+            const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiString)}`;
+
+            const paymentModal = document.createElement('div');
+            paymentModal.id = "upiPaymentModal";
+            paymentModal.className = "fixed inset-0 bg-navy/95 z-[9999] flex justify-center items-center backdrop-blur-sm p-4 safe-pb";
+            paymentModal.innerHTML = `
+                <div class="bg-white rounded-3xl p-6 md:p-8 w-[95%] md:max-w-md text-center shadow-2xl relative border-t-8 border-orange flex flex-col max-h-[90vh] overflow-y-auto custom-scrollbar">
+                    <button onclick="document.getElementById('upiPaymentModal').remove()" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl"><i class="fa-solid fa-times"></i></button>
+                    <h2 class="text-2xl md:text-3xl font-black text-navy mb-2 mt-4 md:mt-0">Complete Payment</h2>
+                    <p class="text-gray-500 font-bold mb-1">Total Slot Value: ₹${totalAmt}</p>
+                    <p class="text-navy font-black mb-4 md:mb-6 text-lg md:text-xl border-b-2 border-gray-100 pb-4">Advance to Pay Now (50%): <br><span class="text-orange text-3xl md:text-4xl mt-2 block">₹${advanceAmt}</span></p>
+                    <div class="hidden md:block mb-4 md:mb-6">
+                        <p class="text-xs md:text-sm font-bold text-navy mb-3 uppercase tracking-widest">Scan to Pay via any UPI App</p>
+                        <img src="${qrImageUrl}" alt="UPI QR Code" class="mx-auto border-4 border-gray-100 rounded-xl shadow-sm">
+                    </div>
+                    <div class="block md:hidden mb-4 md:mb-6">
+                        <a href="${upiString}" class="block w-full bg-navy text-white py-4 rounded-xl font-black text-base hover:bg-orange transition shadow-xl flex justify-center items-center gap-3">
+                            <i class="fa-solid fa-mobile-screen"></i> Pay via App (GPay/PhonePe)
+                        </a>
+                    </div>
+                    <div class="bg-red-50 border-2 border-red-200 rounded-xl p-4 mb-4 md:mb-6 text-left shadow-sm">
+                        <p class="text-xs md:text-sm text-red-600 font-bold leading-relaxed">
+                            <i class="fa-solid fa-circle-exclamation mr-1 text-red-500"></i>
+                            <strong>IMPORTANT:</strong> Your booking is currently on hold. <u>It will ONLY be confirmed AFTER you share the successful payment screenshot</u> of the 50% advance with us on WhatsApp.
+                        </p>
+                    </div>
+                    <button onclick="window.confirmWhatsApp()" class="w-full bg-[#25D366] text-white py-3 md:py-4 rounded-xl font-black text-base hover:bg-[#1ebe5d] transition shadow-xl flex justify-center items-center gap-3 mt-auto">
+                        <i class="fa-brands fa-whatsapp text-xl md:text-2xl"></i> I Paid, Send Screenshot
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(paymentModal);
+            btn.innerHTML = orig; 
+            btn.disabled = false; 
+        };
+
+        window.confirmWhatsApp = async () => {
+            if (!pendingBookingPayload) return;
+            try {
+                await addDoc(collection(db, "bookings"), pendingBookingPayload);
+                const total = pendingBookingPayload.price;
+                const advance = Math.round(total / 2);
+                const waMsg = `*Advance Payment Done! Confirm My Slot* ✅%0A%0A*Name:* ${pendingBookingPayload.name}%0A*Sport:* ${pendingBookingPayload.sport}%0A*Date:* ${pendingBookingPayload.date}%0A*Time:* ${pendingBookingPayload.timeSlot}%0A%0A*Total Slot Value:* ₹${total}%0A*Advance Paid:* ₹${advance}%0A*Pending (Pay at Venue):* ₹${total - advance}%0A%0A[Please attach your payment screenshot here]`;
+                window.open(`https://wa.me/9156194847?text=${waMsg}`, '_blank');
+                document.getElementById('upiPaymentModal').remove();
+                document.getElementById('bookingForm').reset();
+                window.generateSlots(); 
+                pendingBookingPayload = null;
+            } catch(e) {
+                console.error("Booking Error", e);
+                alert("Failed to process booking on our end. Please try again or contact us directly.");
+            }
+        };
+
+        window.submitAcademyInquiry = async (e) => {
+            e.preventDefault();
+            const payload = {
+                name: document.getElementById('acName').value,
+                phone: document.getElementById('acPhone').value,
+                age: document.getElementById('acAge').value,
+                sport: document.getElementById('acSport').value,
+                createdAt: serverTimestamp()
+            };
+            try {
+                await addDoc(collection(db, "academy_inquiries"), payload);
+                const waMsg = `*Academy Admission Inquiry* 🎓%0A%0A*Parent Name:* ${payload.name}%0A*Phone:* ${payload.phone}%0A*Child Age:* ${payload.age}%0A*Sport:* ${payload.sport}`;
+                window.open(`https://wa.me/9156194847?text=${waMsg}`, '_blank');
+                e.target.reset();
+            } catch(err) {
+                alert("Error sending inquiry.");
+            }
+        };
+
+        window.submitContact = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('contactBtn'); 
+            const orig = btn.innerHTML; 
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Sending...`;
+            
+            const payload = {
+                name: document.getElementById('c_name').value,
+                phone: document.getElementById('c_phone').value,
+                subject: document.getElementById('c_subject').value,
+                message: document.getElementById('c_message').value,
+                createdAt: serverTimestamp()
+            };
+
+            try {
+                await addDoc(collection(db, "contact_inquiries"), payload);
+                const waMsg = `Hello Rama Sports!%0A%0A*Name:* ${payload.name}%0A*Phone:* ${payload.phone}%0A*Inquiry:* ${payload.subject}%0A*Message:* ${payload.message}`;
+                window.open(`https://wa.me/9156194847?text=${waMsg}`, '_blank');
+                e.target.reset(); 
+            } catch(err) {
+                alert("Error sending message.");
+            }
+            btn.innerHTML = orig;
+        };
+
+        // Tournaments Dynamic Linking
+        window.fetchTournaments = async () => {
+            const container = document.getElementById('dynamic-tournaments');
+            try {
+                const querySnapshot = await getDocs(query(collection(db, "tournaments")));
+                container.innerHTML = '';
+                let hasTournaments = false;
+
+                querySnapshot.forEach((doc) => {
+                    hasTournaments = true;
+                    const t = doc.data();
+                    container.innerHTML += `
+                    <div class="bg-navy/80 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl relative overflow-hidden hover-lift">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-orange/20 rounded-bl-full pointer-events-none"></div>
+                        <span class="bg-orange text-white text-[10px] md:text-xs font-black px-3 py-1 md:px-4 md:py-2 rounded-full uppercase tracking-widest shadow-lg">Live</span>
+                        <h3 class="text-2xl md:text-3xl font-black text-white mt-6 mb-2">${t.name}</h3>
+                        <p class="text-sm md:text-base text-gray-300 mb-6 font-bold"><i class="fa-solid fa-medal text-orange mr-2"></i>${t.sport} • ${t.prize} Prize</p>
+                        <p class="font-black text-white text-lg md:text-xl mb-6 border-t border-white/20 pt-4">Fee: ₹${t.fee} / Team</p>
+                        <button onclick="window.openTourneyModal('${t.name}')" class="w-full bg-white text-navy font-black text-base md:text-lg py-3 md:py-4 rounded-xl hover:bg-orange hover:text-white transition shadow-xl relative z-10">
+                            Register Now <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>`;
+                });
+
+                if(!hasTournaments) {
+                    container.innerHTML = `<div class="col-span-full text-center py-20"><p class="text-lg md:text-xl font-bold">No live tournaments right now. Check back soon!</p></div>`;
+                }
+            } catch(e) {
+                console.error(e);
+                container.innerHTML = `<div class="col-span-full text-center py-20"><p class="text-lg font-bold text-red-400">Failed to fetch tournaments.</p></div>`;
+            }
+        };
+
+        window.openTourneyModal = (name) => {
+            document.getElementById('tModName').innerText = name; 
+            document.getElementById('tourneyModal').style.display = 'flex';
+        };
+        window.closeTourneyModal = () => {
+            document.getElementById('tourneyModal').style.display = 'none';
+        };
+
+        window.submitTourneyReg = async (e) => {
+            e.preventDefault();
+            const payload = {
+                teamName: document.getElementById('tTeamName').value,
+                captainName: document.getElementById('tCaptName').value,
+                phone: document.getElementById('tPhone').value,
+                tournament: document.getElementById('tModName').innerText,
+                createdAt: serverTimestamp()
+            };
+            try {
+                await addDoc(collection(db, "tournament_registrations"), payload);
+                const waMsg = `*Tournament Registration!* 🏆%0A%0A*Tournament:* ${payload.tournament}%0A*Team Name:* ${payload.teamName}%0A*Captain:* ${payload.captainName}%0A*Phone:* ${payload.phone}%0A%0AI would like to submit my entry!`;
+                window.open(`https://wa.me/9156194847?text=${waMsg}`, '_blank');
+                window.closeTourneyModal();
+                e.target.reset();
+            } catch(err) { alert("Error Submitting Entry."); }
+        };
+
+        // UI Initializations, Animations, & Gallery Filters
+        window.addEventListener('load', () => {
+            let tl = gsap.timeline({ onComplete: () => {
+                setTimeout(() => { 
+                    document.getElementById('preloader').style.opacity = '0'; 
+                    setTimeout(() => document.getElementById('preloader').style.display = 'none', 500); 
+                    ScrollTrigger.refresh(); 
+                }, 600);
+            }});
+            
+            tl.to("#p-bat", { rotation: -60, duration: 0.3, ease: "power2.in" })
+              .to("#p-ball", { x: 300, y: -200, scale: 0.3, duration: 0.7, ease: "power1.out" }, "-=0.1")
+              .to("#p-text", { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, "-=0.4");
+
+            const todayStr = new Date().toISOString().split("T")[0];
+            document.getElementById('bookDate').min = todayStr; 
+            document.getElementById('heroDate').min = todayStr;
+            
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('.gs-reveal').forEach(elem => {
+                gsap.fromTo(elem, { autoAlpha: 0, y: 30 }, { duration: 1, autoAlpha: 1, y: 0, scrollTrigger: { trigger: elem, start: "top 85%" } });
+            });
+            gsap.utils.toArray('.gs-slide-left').forEach(elem => {
+                gsap.fromTo(elem, { autoAlpha: 0, x: -50 }, { duration: 1, autoAlpha: 1, x: 0, scrollTrigger: { trigger: elem, start: "top 85%" } });
+            });
+            gsap.utils.toArray('.gs-slide-right').forEach(elem => {
+                gsap.fromTo(elem, { autoAlpha: 0, x: 50 }, { duration: 1, autoAlpha: 1, x: 0, scrollTrigger: { trigger: elem, start: "top 85%" } });
+            });
+            gsap.utils.toArray('.gs-slide-up').forEach(elem => {
+                gsap.fromTo(elem, { autoAlpha: 0, y: 50 }, { duration: 1, autoAlpha: 1, y: 0, scrollTrigger: { trigger: elem, start: "top 85%" } });
+            });
+
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if (window.scrollY > 50) { 
+                    nav.classList.add('shadow-md'); 
+                    nav.style.padding = "0"; 
+                } else { 
+                    nav.classList.remove('shadow-md'); 
+                    nav.style.padding = "0.5rem 0"; 
+                }
+            });
+
+            window.setSport('Football');
+            window.fetchTournaments(); // Initiates fetch for dynamic tournaments
+        });
+
+        // Advanced Gallery filtering logic with hidden extra photos
+        window.filterGallery = (category) => {
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if(!window.showingAllGallery && item.classList.contains('extra-photo')) {
+                    item.classList.add('hidden');
+                    return;
+                }
+                if (category === 'all') {
+                    item.classList.remove('hidden');
+                } else {
+                    if (item.classList.contains(category)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                }
+            });
+            ScrollTrigger.refresh();
+        };
+
+        window.showMorePhotos = () => {
+            window.showingAllGallery = true;
+            document.getElementById('morePhotosBtn').style.display = 'none';
+            window.filterGallery('all'); 
+            gsap.fromTo('.extra-photo', { autoAlpha: 0, scale: 0.95 }, { duration: 0.8, autoAlpha: 1, scale: 1, stagger: 0.1 });
+        };
+    </script>
+</body>
+</html>

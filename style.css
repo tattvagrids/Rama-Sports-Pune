@@ -1,0 +1,133 @@
+/* Base & Scrollbar */
+body { 
+    background-color: #F4F4F4; 
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #F4F4F4; }
+::-webkit-scrollbar-thumb { background: #0a2540; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #ff6a00; }
+
+/* Preloader - Cricket Six Animation */
+#preloader { 
+    position: fixed; inset: 0; background: #0a2540; z-index: 99999; 
+    display: flex; flex-direction: column; justify-content: center; align-items: center; 
+}
+.cricket-scene {
+    position: relative; width: 300px; height: 200px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+.cricket-bat {
+    width: 15px; height: 80px; background: #fcd34d; border-radius: 4px;
+    position: absolute; bottom: 20px; left: 40px; transform-origin: bottom center; transform: rotate(45deg);
+}
+.cricket-bat::after {
+    content: ''; position: absolute; top: -20px; left: 2px; width: 11px; height: 20px;
+    background: #ef4444; border-radius: 4px 4px 0 0;
+}
+.cricket-ball {
+    width: 16px; height: 16px; background: #ff6a00; border-radius: 50%;
+    position: absolute; bottom: 20px; left: 100px; box-shadow: 0 0 10px rgba(255,106,0,0.8);
+}
+
+/* Hover & Liquid Transitions */
+.hover-lift { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; }
+@media (hover: hover) {
+    .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(10, 37, 64, 0.15); z-index: 10; }
+}
+
+.orange-btn { 
+    background: #ff6a00; color: white; transition: all 0.3s ease; 
+    box-shadow: 0 4px 15px rgba(255, 106, 0, 0.4); border: none; cursor: pointer; 
+}
+.orange-btn:hover { background: #e65c00; transform: scale(1.03); box-shadow: 0 8px 25px rgba(255, 106, 0, 0.6); }
+
+/* 3D Parallax Backgrounds */
+.parallax-hero { 
+    background-image: url('https://images.unsplash.com/photo-1556056504-5c7696c4c28d?q=80&w=2076&auto=format&fit=crop'); 
+    background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; 
+}
+.parallax-tourney { 
+    background-image: linear-gradient(to right, rgba(10, 37, 64, 0.95), rgba(10, 37, 64, 0.8)), url('https://images.unsplash.com/photo-1518605368461-1e1e38ce8058?q=80&w=2070&auto=format&fit=crop'); 
+    background-size: cover; background-position: center; background-attachment: fixed;
+}
+
+/* 1-Hour Interactive Slot Grid */
+.slot-card { border: 2px solid #e5e7eb; background: white; transition: all 0.2s ease; cursor: pointer; user-select: none; }
+.slot-card:hover:not(.slot-booked) { border-color: #ff6a00; transform: scale(1.03); }
+.slot-booked { 
+    background: repeating-linear-gradient(45deg, #f3f4f6, #f3f4f6 10px, #e5e7eb 10px, #e5e7eb 20px); 
+    border-color: #d1d5db; cursor: not-allowed; opacity: 0.6; pointer-events: none; color: #9ca3af; text-decoration: line-through; 
+}
+.slot-selected { background: #0a2540; color: white; border-color: #0a2540; transform: scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2); }
+
+/* Sliding Marquee for Reviews */
+.marquee-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+.marquee-wrapper::before, .marquee-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 40px;
+    z-index: 2;
+    pointer-events: none;
+}
+.marquee-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #F4F4F4, transparent);
+}
+.marquee-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #F4F4F4, transparent);
+}
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+}
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+.marquee-content {
+    display: flex;
+    gap: 1.5rem;
+    padding-right: 1.5rem; 
+}
+.review-card {
+    width: 320px;
+    flex-shrink: 0;
+    white-space: normal;
+}
+@media (min-width: 768px) {
+    .review-card { width: 400px; }
+    .marquee-content { gap: 2rem; padding-right: 2rem; }
+}
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Admin UI */
+.admin-tab-content { display: none; animation: fadeIn 0.3s ease; }
+.admin-tab-content.active { display: block; }
+.admin-nav-item.active { background-color: #ff6a00; color: white; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Bouncing Loading Animation */
+@keyframes custom-bounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-25px) rotate(180deg); }
+}
+.animate-custom-bounce { animation: custom-bounce 1s infinite ease-in-out; }
+
+/* Safe area padding for mobile navs */
+.safe-pb { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+/* Utilities */
+.gallery-item.hidden { display: none; }
+.custom-scrollbar::-webkit-scrollbar { height: 4px; width: 4px; }
