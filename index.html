@@ -58,13 +58,22 @@
 </head>
 <body class="text-gray-800 pb-20 md:pb-0">
 
-    <!-- Preloader (Cricket Six Animation) -->
-    <div id="preloader">
-        <div class="cricket-scene">
+    <!-- Preloader (Perfectly Centered Logo + Text, Ball flies over) -->
+    <div id="preloader" class="fixed inset-0 bg-navy z-[9999] flex flex-col items-center justify-center transition-opacity duration-500">
+        
+        <!-- Action Scene (Absolute so it doesn't mess up centering) -->
+        <div class="cricket-scene absolute inset-0 flex items-center justify-center pointer-events-none z-50">
             <div id="p-bat" class="cricket-bat"></div>
             <div id="p-ball" class="cricket-ball"></div>
         </div>
-        <h2 id="p-text" class="text-white font-black tracking-widest uppercase text-3xl md:text-5xl mt-4 opacity-0 scale-50">
+        
+        <!-- Premium Logo -->
+        <div id="p-logo" class="w-24 h-24 md:w-32 md:h-32 bg-white rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(255,106,0,0.6)] p-2 mb-4 border-2 border-orange opacity-0 scale-50 relative z-10">
+            <img src="logo.png" alt="Rama Sports Logo" class="w-full h-full object-contain">
+        </div>
+        
+        <!-- Brand Name -->
+        <h2 id="p-text" class="text-white font-black tracking-widest uppercase text-3xl md:text-5xl drop-shadow-2xl opacity-0 scale-50 relative z-10">
             Rama Sports
         </h2>
     </div>
@@ -338,7 +347,7 @@
                                 <span id="sumTime" class="text-orange text-xs md:text-sm space-y-2 block max-h-32 overflow-y-auto pr-2 custom-scrollbar">None</span>
                             </div>
                             
-                            <!-- UPDATED PAYMENT SUMMARY DISPLAY -->
+                            <!-- PAYMENT SUMMARY DISPLAY -->
                             <div class="flex justify-between text-xl md:text-2xl pt-2 mt-2 border-t border-gray-200">
                                 <span>Total Value:</span> 
                                 <span id="sumPrice" class="text-navy font-black">₹0</span>
@@ -1070,14 +1079,15 @@
                         if (isViewing6v6 && isBooked6v6) return true;
 
                         // 3. 5v5 Turf Logic (Full turf vs Nets)
+                        // Note: ANY 5v5 (Hockey, Football, Cricket) blocks Nets and other 5v5s
                         const isViewing5v5 = viewing.startsWith('5v5');
                         const isBooked5v5 = booked.startsWith('5v5');
                         const isViewingNet = viewing.startsWith('Cricket Net');
                         const isBookedNet = booked.startsWith('Cricket Net');
                         
-                        if (isViewing5v5 && isBooked5v5) return true; 
-                        if (isViewing5v5 && isBookedNet) return true; 
-                        if (isViewingNet && isBooked5v5) return true; 
+                        if (isViewing5v5 && isBooked5v5) return true; // Football blocks Hockey etc.
+                        if (isViewing5v5 && isBookedNet) return true; // Full blocked if ANY net booked
+                        if (isViewingNet && isBooked5v5) return true; // ANY net blocked if Full is booked
 
                         // 4. Basketball & Pickleball Logic
                         const group1 = ['Basketball Half Court 1', 'Pickleball Court 1'];
@@ -1432,9 +1442,11 @@
                 }, 600);
             }});
             
+            // New Sequence: Bat swings -> Ball flies over logo -> Logo pops in -> Text pops in
             tl.to("#p-bat", { rotation: -60, duration: 0.3, ease: "power2.in" })
               .to("#p-ball", { x: 300, y: -200, scale: 0.3, duration: 0.7, ease: "power1.out" }, "-=0.1")
-              .to("#p-text", { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, "-=0.4");
+              .to("#p-logo", { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, "-=0.5")
+              .to("#p-text", { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, "-=0.3");
 
             const todayStr = new Date().toISOString().split("T")[0];
             document.getElementById('bookDate').min = todayStr; 
