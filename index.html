@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Rama Sports | The City's Best Turf</title>
-
-   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R465038SK2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-R465038SK2');
-</script>
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R465038SK2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-R465038SK2');
+    </script>
+    <!-- End Google tag -->
+
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -337,15 +338,16 @@
                                 <span id="sumTime" class="text-orange text-xs md:text-sm space-y-2 block max-h-32 overflow-y-auto pr-2 custom-scrollbar">None</span>
                             </div>
                             
-                            <div class="flex justify-between text-lg md:text-xl pt-2 mt-2">
-                                <span>Total Value:</span> 
-                                <span id="sumPrice" class="text-gray-400 font-bold line-through">₹0</span>
-                            </div>
+                            <!-- UPDATED PAYMENT SUMMARY DISPLAY -->
                             <div class="flex justify-between text-xl md:text-2xl pt-2 mt-2 border-t border-gray-200">
-                                <span>Advance (50%):</span> 
-                                <span id="sumAdvance" class="text-orange font-black">₹0</span>
+                                <span>Total Value:</span> 
+                                <span id="sumPrice" class="text-navy font-black">₹0</span>
                             </div>
-                            <p class="text-[10px] md:text-xs text-teal mt-1 text-right font-bold">* Pay the remaining 50% at the venue.</p>
+                            <div class="flex justify-between text-base md:text-lg pt-2 mt-2 text-gray-500">
+                                <span class="text-sm md:text-base">Min. Advance (50%):</span> 
+                                <span id="sumAdvance" class="font-bold">₹0</span>
+                            </div>
+                            <p class="text-[10px] md:text-xs text-teal mt-1 text-right font-bold">* You can pay full or 50% advance.</p>
                         </div>
 
                         <!-- Customer Details Form -->
@@ -902,7 +904,11 @@
         let pendingBookingPayload = null;
         window.showingAllGallery = false;
 
-        // Sub-Sport Mappings (Includes Hockey now!)
+        // Payment State Variables
+        window.currentPaymentTotal = 0;
+        window.currentPaymentAdvance = 0;
+
+        // Sub-Sport Mappings
         const subSportsMap = {
             '6v6': ['6v6 Football', '6v6 Cricket'],
             '5v5': ['5v5 Football', '5v5 Cricket', '5v5 Hockey', 'Cricket Net 1', 'Cricket Net 2', 'Cricket Net 3', 'Cricket Net 4', 'Cricket Net 5'],
@@ -1064,15 +1070,14 @@
                         if (isViewing6v6 && isBooked6v6) return true;
 
                         // 3. 5v5 Turf Logic (Full turf vs Nets)
-                        // Note: ANY 5v5 (Hockey, Football, Cricket) blocks Nets and other 5v5s
                         const isViewing5v5 = viewing.startsWith('5v5');
                         const isBooked5v5 = booked.startsWith('5v5');
                         const isViewingNet = viewing.startsWith('Cricket Net');
                         const isBookedNet = booked.startsWith('Cricket Net');
                         
-                        if (isViewing5v5 && isBooked5v5) return true; // Football blocks Hockey etc.
-                        if (isViewing5v5 && isBookedNet) return true; // Full blocked if ANY net booked
-                        if (isViewingNet && isBooked5v5) return true; // ANY net blocked if Full is booked
+                        if (isViewing5v5 && isBooked5v5) return true; 
+                        if (isViewing5v5 && isBookedNet) return true; 
+                        if (isViewingNet && isBooked5v5) return true; 
 
                         // 4. Basketball & Pickleball Logic
                         const group1 = ['Basketball Half Court 1', 'Pickleball Court 1'];
@@ -1149,12 +1154,31 @@
             advanceContainer.innerHTML = `₹${Math.round(tot / 2)}`;
         };
 
+        window.updateUPI = (type) => {
+            const amtToPay = type === 'full' ? window.currentPaymentTotal : window.currentPaymentAdvance;
+            
+            // Update the display text in the modal
+            document.getElementById('displayPayAmount').innerText = `₹${amtToPay}`;
+            
+            const merchantUpiId = "ramasportspune@okicici"; 
+            const merchantName = "Rama Sports";
+            const upiString = `upi://pay?pa=${merchantUpiId}&pn=${encodeURIComponent(merchantName)}&am=${amtToPay}&cu=INR&tn=Turf Booking ${selectedDate}`;
+            
+            // Update QR
+            document.getElementById('upiQrImage').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiString)}`;
+            
+            // Update Link for Mobile
+            const appLink = document.getElementById('upiAppLink');
+            if(appLink) appLink.href = upiString;
+
+            // Save the exact amount they intend to pay into our payload
+            pendingBookingPayload.amountPaid = amtToPay;
+            pendingBookingPayload.paymentType = type;
+        };
+
         window.submitBooking = async (e) => {
             e.preventDefault();
             if (selectedSlotsArray.length === 0) return alert('Please select at least one hourly slot to book.');
-
-            const merchantUpiId = "ramasportspune@okicici"; 
-            const merchantName = "Rama Sports";
 
             const btn = document.getElementById('submitBtn'); 
             const orig = btn.innerHTML; 
@@ -1164,6 +1188,10 @@
             const combinedTimes = selectedSlotsArray.map(s => s.time).join(', ');
             const totalAmt = selectedSlotsArray.reduce((acc, curr) => acc + curr.price, 0);
             const advanceAmt = Math.round(totalAmt / 2);
+
+            // Store globally for the modal logic to use
+            window.currentPaymentTotal = totalAmt;
+            window.currentPaymentAdvance = advanceAmt;
 
             pendingBookingPayload = { 
                 name: document.getElementById('bookName').value, 
@@ -1177,39 +1205,60 @@
                 createdAt: serverTimestamp()
             };
 
-            const upiString = `upi://pay?pa=${merchantUpiId}&pn=${encodeURIComponent(merchantName)}&am=${advanceAmt}&cu=INR&tn=Turf Booking ${selectedDate} Advance`;
-            const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiString)}`;
-
             const paymentModal = document.createElement('div');
             paymentModal.id = "upiPaymentModal";
             paymentModal.className = "fixed inset-0 bg-navy/95 z-[9999] flex justify-center items-center backdrop-blur-sm p-4 safe-pb";
             paymentModal.innerHTML = `
                 <div class="bg-white rounded-3xl p-6 md:p-8 w-[95%] md:max-w-md text-center shadow-2xl relative border-t-8 border-orange flex flex-col max-h-[90vh] overflow-y-auto custom-scrollbar">
                     <button onclick="document.getElementById('upiPaymentModal').remove()" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl"><i class="fa-solid fa-times"></i></button>
+                    
                     <h2 class="text-2xl md:text-3xl font-black text-navy mb-2 mt-4 md:mt-0">Complete Payment</h2>
-                    <p class="text-gray-500 font-bold mb-1">Total Slot Value: ₹${totalAmt}</p>
-                    <p class="text-navy font-black mb-4 md:mb-6 text-lg md:text-xl border-b-2 border-gray-100 pb-4">Advance to Pay Now (50%): <br><span class="text-orange text-3xl md:text-4xl mt-2 block">₹${advanceAmt}</span></p>
+                    <p class="text-gray-500 font-bold mb-4">Total Slot Value: ₹${totalAmt}</p>
+                    
+                    <!-- New Payment Toggle Options -->
+                    <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 mb-4 flex justify-center gap-4">
+                        <label class="flex items-center gap-2 cursor-pointer font-bold text-sm md:text-base text-navy">
+                            <input type="radio" name="payOption" value="advance" checked onchange="window.updateUPI('advance')" class="w-4 h-4 accent-orange">
+                            Pay 50% (₹${advanceAmt})
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer font-bold text-sm md:text-base text-navy">
+                            <input type="radio" name="payOption" value="full" onchange="window.updateUPI('full')" class="w-4 h-4 accent-orange">
+                            Pay Full (₹${totalAmt})
+                        </label>
+                    </div>
+
+                    <p class="text-navy font-black mb-4 md:mb-6 text-lg md:text-xl border-b-2 border-gray-100 pb-4">Amount to Pay Now: <br>
+                        <span class="text-orange text-3xl md:text-4xl mt-2 block" id="displayPayAmount">₹${advanceAmt}</span>
+                    </p>
+                    
                     <div class="hidden md:block mb-4 md:mb-6">
                         <p class="text-xs md:text-sm font-bold text-navy mb-3 uppercase tracking-widest">Scan to Pay via any UPI App</p>
-                        <img src="${qrImageUrl}" alt="UPI QR Code" class="mx-auto border-4 border-gray-100 rounded-xl shadow-sm">
+                        <img id="upiQrImage" src="" alt="UPI QR Code" class="mx-auto border-4 border-gray-100 rounded-xl shadow-sm">
                     </div>
+                    
                     <div class="block md:hidden mb-4 md:mb-6">
-                        <a href="${upiString}" class="block w-full bg-navy text-white py-4 rounded-xl font-black text-base hover:bg-orange transition shadow-xl flex justify-center items-center gap-3">
+                        <a id="upiAppLink" href="#" class="block w-full bg-navy text-white py-4 rounded-xl font-black text-base hover:bg-orange transition shadow-xl flex justify-center items-center gap-3">
                             <i class="fa-solid fa-mobile-screen"></i> Pay via App (GPay/PhonePe)
                         </a>
                     </div>
+                    
                     <div class="bg-red-50 border-2 border-red-200 rounded-xl p-4 mb-4 md:mb-6 text-left shadow-sm">
                         <p class="text-xs md:text-sm text-red-600 font-bold leading-relaxed">
                             <i class="fa-solid fa-circle-exclamation mr-1 text-red-500"></i>
-                            <strong>IMPORTANT:</strong> Your booking is currently on hold. <u>It will ONLY be confirmed AFTER you share the successful payment screenshot</u> of the 50% advance with us on WhatsApp.
+                            <strong>IMPORTANT:</strong> Your booking is currently on hold. <u>It will ONLY be confirmed AFTER you share the successful payment screenshot</u> with us on WhatsApp.
                         </p>
                     </div>
+                    
                     <button onclick="window.confirmWhatsApp()" class="w-full bg-[#25D366] text-white py-3 md:py-4 rounded-xl font-black text-base hover:bg-[#1ebe5d] transition shadow-xl flex justify-center items-center gap-3 mt-auto">
                         <i class="fa-brands fa-whatsapp text-xl md:text-2xl"></i> I Paid, Send Screenshot
                     </button>
                 </div>
             `;
             document.body.appendChild(paymentModal);
+            
+            // Run the initial QR generation for the default "advance" selection
+            window.updateUPI('advance');
+
             btn.innerHTML = orig; 
             btn.disabled = false; 
         };
@@ -1221,12 +1270,11 @@
                 await addDoc(collection(db, "bookings"), pendingBookingPayload);
                 
                 const total = pendingBookingPayload.price;
-                const advance = Math.round(total / 2);
+                const amountPaid = pendingBookingPayload.amountPaid;
+                const pending = total - amountPaid;
 
                 // 2. Trigger Automated Emails via EmailJS
-                // REPLACE "YOUR_SERVICE_ID", "YOUR_OWNER_TEMPLATE_ID", and "YOUR_USER_TEMPLATE_ID" in production
                 try {
-                    // Send Email to Owner
                     emailjs.send("YOUR_SERVICE_ID", "YOUR_OWNER_TEMPLATE_ID", {
                         to_name: "Rama Sports Admin",
                         from_name: pendingBookingPayload.name,
@@ -1236,11 +1284,10 @@
                         date: pendingBookingPayload.date,
                         time: pendingBookingPayload.timeSlot,
                         total: total,
-                        advance: advance,
-                        message: "A new booking request was submitted. Please check WhatsApp for their payment screenshot."
+                        advance: amountPaid,
+                        message: `A new booking request was submitted. User chose to pay ${pendingBookingPayload.paymentType === 'full' ? 'Full Amount' : '50% Advance'}. Please check WhatsApp for their screenshot.`
                     });
 
-                    // Send Email to Customer
                     emailjs.send("YOUR_SERVICE_ID", "YOUR_USER_TEMPLATE_ID", {
                         to_email: pendingBookingPayload.email,
                         to_name: pendingBookingPayload.name,
@@ -1248,15 +1295,17 @@
                         date: pendingBookingPayload.date,
                         time: pendingBookingPayload.timeSlot,
                         total: total,
-                        advance: advance,
-                        message: "Your booking request is initiated! To secure your slot, please ensure you have sent the 50% advance screenshot to our WhatsApp."
+                        advance: amountPaid,
+                        message: "Your booking request is initiated! To secure your slot, please ensure you have sent the payment screenshot to our WhatsApp."
                     });
                 } catch(emailErr) {
                     console.warn("EmailJS failed. Ensure your keys are correctly set.", emailErr);
                 }
 
                 // 3. Redirect to WhatsApp for Screenshot
-                const waMsg = `*Advance Payment Done! Confirm My Slot* ✅%0A%0A*Name:* ${pendingBookingPayload.name}%0A*Court:* ${pendingBookingPayload.sport}%0A*Date:* ${pendingBookingPayload.date}%0A*Time:* ${pendingBookingPayload.timeSlot}%0A%0A*Total Slot Value:* ₹${total}%0A*Advance Paid:* ₹${advance}%0A*Pending (Pay at Venue):* ₹${total - advance}%0A%0A[Please attach your payment screenshot here]`;
+                const paymentLabel = pendingBookingPayload.paymentType === 'full' ? 'Full Payment' : '50% Advance';
+                const waMsg = `*Payment Done! Confirm My Slot* ✅%0A%0A*Name:* ${pendingBookingPayload.name}%0A*Court:* ${pendingBookingPayload.sport}%0A*Date:* ${pendingBookingPayload.date}%0A*Time:* ${pendingBookingPayload.timeSlot}%0A%0A*Total Slot Value:* ₹${total}%0A*Amount Paid:* ₹${amountPaid} (${paymentLabel})%0A*Pending (Pay at Venue):* ₹${pending}%0A%0A[Please attach your payment screenshot here]`;
+                
                 window.open(`https://wa.me/9156194847?text=${waMsg}`, '_blank');
                 
                 // Cleanup
