@@ -124,21 +124,11 @@
                 Experience Professional Grade FIFA-Approved surfaces, High-Lumen LED lighting, and effortless booking.
             </p>
             
-            <!-- Quick Book Bar -->
-            <div class="bg-white p-3 md:p-4 rounded-3xl shadow-2xl flex flex-col md:flex-row gap-3 md:gap-4 items-center max-w-4xl mx-auto w-[95%]">
-                <select id="heroSport" class="w-full md:w-1/3 p-3 md:p-4 bg-gray-50 border border-gray-200 rounded-xl text-navy focus:outline-none focus:border-orange font-bold text-sm md:text-lg">
-                    <option value="Football">Football</option>
-                    <option value="Box Cricket Turf">Box Cricket Turf</option>
-                    <option value="Basketball (Full Court)">Basketball (Full Court)</option>
-                    <option value="Basketball (Half Court 1)">Basketball (Half Court 1)</option>
-                    <option value="Basketball (Half Court 2)">Basketball (Half Court 2)</option>
-                    <option value="Pickleball A">Pickleball Court A</option>
-                    <option value="Pickleball B">Pickleball Court B</option>
-                </select>
-                <input type="date" id="heroDate" class="w-full md:w-1/3 p-3 md:p-4 bg-gray-50 border border-gray-200 rounded-xl text-navy focus:outline-none focus:border-orange font-bold text-sm md:text-lg">
-                <button onclick="scrollToBook()" class="w-full md:w-1/3 orange-btn p-3 md:p-4 rounded-xl font-black text-center text-sm md:text-lg shadow-md flex justify-center items-center gap-2">
-                    <i class="fa-solid fa-magnifying-glass"></i> <span class="md:hidden lg:inline">Check Availability</span><span class="hidden md:inline lg:hidden">Check</span>
-                </button>
+            <!-- Quick Book CTA -->
+            <div class="mt-8">
+                <a href="#booking" class="orange-btn px-8 py-4 md:px-10 md:py-5 rounded-full font-black text-center text-lg md:text-xl shadow-2xl hover:scale-105 transition inline-flex items-center gap-3">
+                    <i class="fa-solid fa-calendar-check text-2xl"></i> View Courts & Book Now
+                </a>
             </div>
         </div>
     </section>
@@ -202,17 +192,17 @@
                             </div>
                             <div>
                                 <h4 class="font-black text-navy text-base md:text-lg">Amenities</h4>
-                                <p class="text-xs md:text-sm text-gray-500">Clean changing rooms, restrooms, and resting dugouts.</p>
+                                <p class="text-xs md:text-sm text-gray-500">Clean changing rooms and hygienic restrooms.</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start gap-4">
                             <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-orange/10 flex items-center justify-center text-orange text-xl md:text-2xl shrink-0 shadow-inner">
-                                <i class="fa-solid fa-bottle-water"></i>
+                                <i class="fa-solid fa-car"></i>
                             </div>
                             <div>
-                                <h4 class="font-black text-navy text-base md:text-lg">Hydration</h4>
-                                <p class="text-xs md:text-sm text-gray-500">Chilled RO drinking water available for all players.</p>
+                                <h4 class="font-black text-navy text-base md:text-lg">Ample Parking</h4>
+                                <p class="text-xs md:text-sm text-gray-500">Secure and spacious parking available for 2-wheelers and 4-wheelers.</p>
                             </div>
                         </div>
                     </div>
@@ -231,9 +221,9 @@
                 
                 <!-- Progress Bar -->
                 <div class="flex justify-center items-center gap-2 md:gap-4 max-w-2xl mx-auto text-xs md:text-lg">
-                    <span class="font-black text-orange">Step 1: Time</span>
+                    <span class="font-black text-orange">Step 1: Court</span>
                     <div class="h-1 md:h-2 flex-1 bg-orange rounded-full shadow-inner"></div>
-                    <span class="font-bold text-navy">Step 2: Info</span>
+                    <span class="font-bold text-navy">Step 2: Time</span>
                     <div class="h-1 md:h-2 flex-1 bg-gray-200 rounded-full shadow-inner"></div>
                     <span class="font-bold text-gray-400">Step 3: Pay</span>
                 </div>
@@ -244,29 +234,50 @@
                 <!-- Left: Booking Grid -->
                 <div class="w-full lg:w-2/3 bg-primary p-4 md:p-10 rounded-[2rem] shadow-2xl gs-slide-up border border-gray-200">
                     
-                    <!-- Sport Tabs -->
-                    <div class="flex gap-3 md:gap-4 mb-6 md:mb-10 overflow-x-auto pb-4 custom-scrollbar">
-                        <button id="btn-Football" onclick="setSport('Football')" class="sport-tab flex-1 min-w-[130px] md:min-w-[150px] bg-navy text-white py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-navy transition shadow-lg shrink-0">
-                            <i class="fa-solid fa-futbol mr-2 text-orange"></i> Football
-                        </button>
-                        <button id="btn-Box Cricket Turf" onclick="setSport('Box Cricket Turf')" class="sport-tab flex-1 min-w-[130px] md:min-w-[150px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
-                            <i class="fa-solid fa-baseball-bat-ball mr-2 text-orange"></i> Cricket
-                        </button>
-                        <button id="btn-Basketball (Full Court)" onclick="setSport('Basketball (Full Court)')" class="sport-tab flex-1 min-w-[170px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
-                            <i class="fa-solid fa-basketball mr-2 text-orange"></i> BB Full Court
-                        </button>
-                        <button id="btn-Basketball (Half Court 1)" onclick="setSport('Basketball (Half Court 1)')" class="sport-tab flex-1 min-w-[170px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
-                            <i class="fa-solid fa-basketball mr-2 text-orange"></i> BB Half 1
-                        </button>
-                        <button id="btn-Basketball (Half Court 2)" onclick="setSport('Basketball (Half Court 2)')" class="sport-tab flex-1 min-w-[170px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
-                            <i class="fa-solid fa-basketball mr-2 text-orange"></i> BB Half 2
-                        </button>
-                        <button id="btn-Pickleball A" onclick="setSport('Pickleball A')" class="sport-tab flex-1 min-w-[130px] md:min-w-[150px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
-                            <i class="fa-solid fa-table-tennis-paddle-ball mr-2 text-orange"></i> Pickleball A
-                        </button>
-                        <button id="btn-Pickleball B" onclick="setSport('Pickleball B')" class="sport-tab flex-1 min-w-[130px] md:min-w-[150px] bg-white text-navy py-3 md:py-4 rounded-xl font-black text-sm md:text-lg border-2 border-gray-200 hover:border-orange transition shrink-0">
-                            <i class="fa-solid fa-table-tennis-paddle-ball mr-2 text-orange"></i> Pickleball B
-                        </button>
+                    <label class="block text-navy font-black mb-4 text-lg md:text-xl"><i class="fa-solid fa-map-location-dot text-orange mr-2"></i> Select Main Area</label>
+
+                    <!-- Main Area Visual Court Selector (Uses Local Images) -->
+                    <div class="flex gap-4 mb-4 overflow-x-auto pb-4 custom-scrollbar snap-x snap-mandatory">
+                        
+                        <!-- 6v6 Turf Main -->
+                        <div id="main-6v6" onclick="setMainCategory('6v6')" class="main-card flex-none w-[160px] md:w-[200px] relative rounded-2xl overflow-hidden cursor-pointer border-4 border-transparent hover:border-orange transition h-28 md:h-32 group snap-center shadow-md">
+                            <img src="6v6-turf.jpg" alt="6v6 Turf" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="overlay bg-black/60 absolute inset-0 flex flex-col items-center justify-center text-white transition-colors duration-300">
+                                <span class="font-black text-sm md:text-lg text-center leading-tight">6v6 Turf</span>
+                            </div>
+                        </div>
+
+                        <!-- 5v5 Turf Main -->
+                        <div id="main-5v5" onclick="setMainCategory('5v5')" class="main-card flex-none w-[160px] md:w-[200px] relative rounded-2xl overflow-hidden cursor-pointer border-4 border-transparent hover:border-orange transition h-28 md:h-32 group snap-center shadow-md">
+                            <img src="5v5-turf.jpg" alt="5v5 Turf & Nets" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="overlay bg-black/60 absolute inset-0 flex flex-col items-center justify-center text-white transition-colors duration-300">
+                                <span class="font-black text-sm md:text-lg text-center leading-tight">5v5 Turf & Nets</span>
+                            </div>
+                        </div>
+
+                        <!-- Basketball Main -->
+                        <div id="main-Basketball" onclick="setMainCategory('Basketball')" class="main-card flex-none w-[160px] md:w-[200px] relative rounded-2xl overflow-hidden cursor-pointer border-4 border-transparent hover:border-orange transition h-28 md:h-32 group snap-center shadow-md">
+                            <img src="basketball.jpg" alt="Basketball Court" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="overlay bg-black/60 absolute inset-0 flex flex-col items-center justify-center text-white transition-colors duration-300">
+                                <span class="font-black text-sm md:text-lg text-center leading-tight">Basketball</span>
+                            </div>
+                        </div>
+
+                        <!-- Pickleball Main -->
+                        <div id="main-Pickleball" onclick="setMainCategory('Pickleball')" class="main-card flex-none w-[160px] md:w-[200px] relative rounded-2xl overflow-hidden cursor-pointer border-4 border-transparent hover:border-orange transition h-28 md:h-32 group snap-center shadow-md">
+                            <img src="pickleball.jpg" alt="Pickleball Court" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="overlay bg-black/60 absolute inset-0 flex flex-col items-center justify-center text-white transition-colors duration-300">
+                                <span class="font-black text-sm md:text-lg text-center leading-tight">Pickleball</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Sub-Sport Selection -->
+                    <div id="subSportWrapper" class="mb-6 md:mb-10 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                        <label class="block text-navy font-black mb-3 text-sm md:text-base"><i class="fa-solid fa-list-check text-orange mr-2"></i> Select Sport/Configuration</label>
+                        <div id="subSportContainer" class="flex flex-wrap gap-2 md:gap-3">
+                            <!-- Populated by JS -->
+                        </div>
                     </div>
 
                     <!-- Date Picker -->
@@ -301,7 +312,7 @@
                                 <i class="fa-solid fa-location-dot"></i>
                             </div>
                             <div>
-                                <p id="sumSport" class="font-black text-navy text-lg md:text-xl mb-1">Football</p>
+                                <p id="sumSport" class="font-black text-navy text-lg md:text-xl mb-1">6v6 Football</p>
                                 <p class="text-xs md:text-sm text-gray-500 font-bold">Rama Sports, Kothrud</p>
                             </div>
                         </div>
@@ -339,7 +350,6 @@
                                 <input type="tel" id="bookPhone" placeholder="Phone Number" class="w-full pl-12 p-3 md:p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange font-bold transition text-sm md:text-base" required>
                             </div>
 
-                            <!-- NEW EMAIL FIELD FOR EMAILJS -->
                             <div class="relative mb-6 md:mb-8">
                                 <i class="fa-solid fa-envelope absolute left-4 top-4 text-gray-400"></i>
                                 <input type="email" id="bookEmail" placeholder="Your Email Address" class="w-full pl-12 p-3 md:p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange font-bold transition text-sm md:text-base" required>
@@ -377,73 +387,81 @@
                 </div>
             </div>
 
-            <!-- ACADEMY DETAILS -->
-            <div class="mt-10 md:mt-16 bg-navy/90 backdrop-blur-md border border-white/10 p-8 md:p-12 rounded-[2rem] shadow-2xl gs-slide-up text-center">
-                <h3 class="text-3xl md:text-5xl font-black text-white mb-4">Rama Sports Academy</h3>
-                <p class="text-orange font-bold text-lg md:text-xl mb-8">Professional Coaching & Dedicated Development</p>
+            <!-- Redesigned Academy Section -->
+            <div class="flex flex-col lg:flex-row gap-8 items-stretch mt-10 md:mt-16 gs-slide-up">
                 
-                <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 text-white">
-                    <div class="bg-white/10 p-6 md:p-8 rounded-2xl border border-white/20 w-full md:w-1/3 hover:bg-white/20 transition">
-                        <i class="fa-solid fa-child-reaching text-4xl md:text-5xl text-teal mb-4"></i>
-                        <h4 class="text-xl md:text-2xl font-black">Age Group</h4>
-                        <p class="text-gray-300 font-bold mt-2 text-sm md:text-base">Boys & Girls<br>Ages 4 to 16</p>
+                <!-- Left: Info Cards -->
+                <div class="w-full lg:w-2/3 flex flex-col md:flex-row gap-6">
+                    
+                    <!-- Age Group Card -->
+                    <div class="w-full md:w-1/3 bg-[#1e2a3b] border border-white/10 p-6 md:p-8 rounded-[2rem] shadow-xl flex flex-col items-center justify-center text-center hover-lift">
+                        <i class="fa-solid fa-child-reaching text-5xl text-teal mb-4"></i>
+                        <h4 class="text-2xl font-black text-white mb-2">Age Group</h4>
+                        <p class="text-gray-300 font-bold text-sm md:text-base">Boys & Girls<br>Ages 4 to 16</p>
                     </div>
-                    <div class="mt-10 md:mt-16 bg-navy/90 backdrop-blur-md border border-white/10 p-8 md:p-12 rounded-[2rem] shadow-2xl gs-slide-up text-center">
-            <h3 class="text-3xl md:text-5xl font-black text-white mb-4">Rama Sports Academy</h3>
-            <p class="text-orange font-bold text-lg md:text-xl mb-8">All Batches: 5:00 PM – 7:00 PM | Ages 4-16</p>
+
+                    <!-- Batches Card -->
+                    <div class="w-full md:w-2/3 bg-[#0a192f] border border-white/5 p-6 md:p-10 rounded-[2rem] shadow-2xl flex flex-col items-center text-center relative overflow-hidden hover-lift">
+                        <!-- subtle background decoration -->
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-orange/10 rounded-bl-full pointer-events-none"></div>
+                        
+                        <h3 class="text-3xl md:text-5xl font-black text-white mb-2 z-10">Rama Sports<br>Academy</h3>
+                        <p class="text-orange font-bold text-sm md:text-base mb-8 z-10">All Batches: 5:00 PM – 7:00 PM | Ages 4-16</p>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full z-10">
+                            <div class="bg-[#1e2a3b] p-4 rounded-xl border border-white/10 flex flex-col items-center justify-center transition hover:bg-white/10">
+                                <h4 class="font-black text-teal text-sm md:text-base text-center leading-tight">MWF<br>Batch</h4>
+                                <p class="text-[10px] md:text-xs text-gray-300 mt-2 text-center">Mon, Wed, Fri</p>
+                            </div>
+                            <div class="bg-[#1e2a3b] p-4 rounded-xl border border-white/10 flex flex-col items-center justify-center transition hover:bg-white/10">
+                                <h4 class="font-black text-teal text-sm md:text-base text-center leading-tight">TTS<br>Batch</h4>
+                                <p class="text-[10px] md:text-xs text-gray-300 mt-2 text-center">Tue, Thu, Sat</p>
+                            </div>
+                            <div class="bg-[#1e2a3b] p-4 rounded-xl border border-white/10 flex flex-col items-center justify-center transition hover:bg-white/10">
+                                <h4 class="font-black text-teal text-sm md:text-base text-center leading-tight">Daily<br>(M-F)</h4>
+                                <p class="text-[10px] md:text-xs text-gray-300 mt-2 text-center">Mon to Fri</p>
+                            </div>
+                            <div class="bg-[#1e2a3b] p-4 rounded-xl border border-white/10 flex flex-col items-center justify-center transition hover:bg-white/10">
+                                <h4 class="font-black text-teal text-sm md:text-base text-center leading-tight">Full<br>Week</h4>
+                                <p class="text-[10px] md:text-xs text-gray-300 mt-2 text-center">Mon to Sat</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Inquiry Form -->
+                <div class="w-full lg:w-1/3 bg-white p-6 md:p-8 rounded-[2rem] shadow-2xl gs-slide-left text-navy flex flex-col">
+                    <h3 class="text-2xl font-black text-navy mb-6 text-center border-b-2 border-gray-100 pb-4">Academy<br>Admission Inquiry</h3>
+                    <form onsubmit="submitAcademyInquiry(event)" class="space-y-4 flex-1 flex flex-col">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1">Parent / Guardian Name</label>
+                            <input type="text" id="acName" class="w-full bg-gray-50 border-2 border-gray-200 p-3 rounded-xl text-navy font-bold outline-none focus:border-orange transition text-sm" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1">Phone Number</label>
+                            <input type="tel" id="acPhone" class="w-full bg-gray-50 border-2 border-gray-200 p-3 rounded-xl text-navy font-bold outline-none focus:border-orange transition text-sm" required>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 mb-1">Child's Age (4-16)</label>
+                                <input type="number" id="acAge" min="4" max="16" class="w-full bg-gray-50 border-2 border-gray-200 p-3 rounded-xl text-navy font-bold outline-none focus:border-orange transition text-sm" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 mb-1">Sport</label>
+                                <select id="acSport" class="w-full bg-gray-50 border-2 border-gray-200 p-3 rounded-xl text-navy font-bold outline-none focus:border-orange transition text-sm cursor-pointer">
+                                    <option>Football</option>
+                                    <option>Cricket</option>
+                                    <option>Basketball</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full orange-btn text-white py-3 rounded-xl font-black text-base shadow-xl mt-auto">
+                            Send Inquiry <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-white">
-                <div class="bg-white/10 p-4 rounded-xl border border-white/20">
-                    <h4 class="font-black text-teal">MWF Batch</h4>
-                    <p class="text-xs mt-1">Mon, Wed, Fri</p>
-                </div>
-                <div class="bg-white/10 p-4 rounded-xl border border-white/20">
-                    <h4 class="font-black text-teal">TTS Batch</h4>
-                    <p class="text-xs mt-1">Tue, Thu, Sat</p>
-                </div>
-                <div class="bg-white/10 p-4 rounded-xl border border-white/20">
-                    <h4 class="font-black text-teal">Daily (M-F)</h4>
-                    <p class="text-xs mt-1">Mon to Fri</p>
-                </div>
-                <div class="bg-white/10 p-4 rounded-xl border border-white/20">
-                    <h4 class="font-black text-teal">Full Week</h4>
-                    <p class="text-xs mt-1">Mon to Sat</p>
-                </div>
-                </div>
-            </div>
-
-            <!-- New Academy Inquiry Form -->
-            <div class="mt-10 bg-white p-6 md:p-8 rounded-3xl shadow-2xl gs-slide-left text-navy max-w-3xl mx-auto">
-                <h3 class="text-2xl font-black text-navy mb-6 border-b-2 border-gray-200 pb-4">Academy Admission Inquiry</h3>
-                <form onsubmit="submitAcademyInquiry(event)" class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-bold text-gray-500 mb-2">Parent / Guardian Name</label>
-                        <input type="text" id="acName" class="w-full bg-gray-50 border-2 border-gray-200 p-4 rounded-xl text-navy font-bold outline-none focus:border-orange transition" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-500 mb-2">Phone Number</label>
-                        <input type="tel" id="acPhone" class="w-full bg-gray-50 border-2 border-gray-200 p-4 rounded-xl text-navy font-bold outline-none focus:border-orange transition" required>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-bold text-gray-500 mb-2">Child's Age (4-16)</label>
-                            <input type="number" id="acAge" min="4" max="16" class="w-full bg-gray-50 border-2 border-gray-200 p-4 rounded-xl text-navy font-bold outline-none focus:border-orange transition" required>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-gray-500 mb-2">Sport</label>
-                            <select id="acSport" class="w-full bg-gray-50 border-2 border-gray-200 p-4 rounded-xl text-navy font-bold outline-none focus:border-orange transition">
-                                <option>Football</option>
-                                <option>Cricket</option>
-                                <option>Basketball</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full orange-btn text-white py-4 rounded-xl font-black text-lg shadow-xl mt-4">
-                        Send Inquiry <i class="fa-solid fa-paper-plane ml-2"></i>
-                    </button>
-                </form>
-            </div>
-
         </div>
     </section>
 
@@ -867,21 +885,38 @@
         const db = getFirestore(app);
 
         // State Variables
-        let currentSport = 'Football';
+        let currentMainCategory = '6v6';
+        let currentSport = '6v6 Football'; 
         let selectedDate = '';
         let selectedSlotsArray = [];
         let pendingBookingPayload = null;
         window.showingAllGallery = false;
 
-        // Pricing Configuration
+        // Sub-Sport Mappings (Includes Hockey now!)
+        const subSportsMap = {
+            '6v6': ['6v6 Football', '6v6 Cricket'],
+            '5v5': ['5v5 Football', '5v5 Cricket', '5v5 Hockey', 'Cricket Net 1', 'Cricket Net 2', 'Cricket Net 3', 'Cricket Net 4', 'Cricket Net 5'],
+            'Basketball': ['Basketball Full Court', 'Basketball Half Court 1', 'Basketball Half Court 2'],
+            'Pickleball': ['Pickleball Court 1', 'Pickleball Court 2']
+        };
+
+        // Pricing Logic
         const pricingLogic = {
-            'Football': { price: 1200 },
-            'Box Cricket Turf': { price: 1000 },
-            'Basketball (Full Court)': { price: 800 },
-            'Basketball (Half Court 1)': { price: 400 },
-            'Basketball (Half Court 2)': { price: 400 },
-            'Pickleball A': { price: 400 },
-            'Pickleball B': { price: 400 }
+            '6v6 Football': { price: 1500 },
+            '6v6 Cricket': { price: 1500 },
+            '5v5 Football': { price: 1200 },
+            '5v5 Cricket': { price: 1200 },
+            '5v5 Hockey': { price: 1200 },
+            'Cricket Net 1': { price: 300 },
+            'Cricket Net 2': { price: 300 },
+            'Cricket Net 3': { price: 300 },
+            'Cricket Net 4': { price: 300 },
+            'Cricket Net 5': { price: 300 },
+            'Basketball Full Court': { price: 800 },
+            'Basketball Half Court 1': { price: 400 },
+            'Basketball Half Court 2': { price: 400 },
+            'Pickleball Court 1': { price: 400 },
+            'Pickleball Court 2': { price: 400 }
         };
 
         function formatTime(h) {
@@ -891,32 +926,80 @@
             return `${hr < 10 ? '0'+hr : hr}:00 ${ampm}`;
         }
 
-        // Exposing specific functions to window so HTML inline onclick handlers work
         window.scrollToBook = () => {
-            window.setSport(document.getElementById('heroSport').value);
-            if (document.getElementById('heroDate').value) { 
-                document.getElementById('bookDate').value = document.getElementById('heroDate').value; 
-                window.generateSlots(); 
-            }
             document.getElementById('booking').scrollIntoView({behavior: 'smooth'});
         };
 
-        window.setSport = (sport) => {
-            currentSport = sport; 
-            document.getElementById('sumSport').innerText = sport;
+        // UI function: Select Main Area
+        window.setMainCategory = (category) => {
+            currentMainCategory = category;
             
-            document.querySelectorAll('.sport-tab').forEach(tab => { 
-                tab.classList.remove('bg-navy', 'text-white', 'border-navy'); 
-                tab.classList.add('bg-white', 'text-navy', 'border-gray-200'); 
+            // Visual Updates for Main Cards
+            document.querySelectorAll('.main-card').forEach(card => { 
+                card.classList.remove('border-orange'); 
+                card.classList.add('border-transparent'); 
+                const overlay = card.querySelector('.overlay');
+                if (overlay) {
+                    overlay.classList.remove('bg-orange/80');
+                    overlay.classList.add('bg-black/60');
+                }
             });
-            const activeTab = document.getElementById(`btn-${sport}`);
-            if (activeTab) { 
-                activeTab.classList.remove('bg-white', 'text-navy', 'border-gray-200'); 
-                activeTab.classList.add('bg-navy', 'text-white', 'border-navy'); 
+            
+            const activeCard = document.getElementById(`main-${category}`);
+            if (activeCard) { 
+                activeCard.classList.remove('border-transparent'); 
+                activeCard.classList.add('border-orange'); 
+                const overlay = activeCard.querySelector('.overlay');
+                if (overlay) {
+                    overlay.classList.remove('bg-black/60');
+                    overlay.classList.add('bg-orange/80');
+                }
             }
+
+            // Render Sub-Sports
+            renderSubSports(category);
+        };
+
+        // UI function: Render the Pills/Buttons
+        function renderSubSports(category) {
+            const container = document.getElementById('subSportContainer');
+            container.innerHTML = '';
+            
+            const sports = subSportsMap[category];
+            sports.forEach(sport => {
+                const btn = document.createElement('button');
+                btn.className = `sub-sport-btn px-4 py-2 md:px-6 md:py-3 rounded-full font-bold text-sm md:text-base border-2 transition shadow-sm shrink-0 whitespace-nowrap bg-gray-100 text-gray-500 border-transparent hover:bg-orange hover:text-white`;
+                btn.innerText = sport;
+                btn.onclick = () => window.setSubSport(sport, btn);
+                container.appendChild(btn);
+            });
+
+            // Auto-select the first option
+            if(sports.length > 0) {
+                window.setSubSport(sports[0], container.firstChild);
+            }
+        }
+
+        // UI function: Select specific Sub Sport
+        window.setSubSport = (sport, element) => {
+            currentSport = sport;
+            document.getElementById('sumSport').innerText = sport;
+
+            // Visual update for pills
+            document.querySelectorAll('.sub-sport-btn').forEach(btn => {
+                btn.classList.remove('bg-navy', 'text-white', 'border-navy');
+                btn.classList.add('bg-gray-100', 'text-gray-500', 'border-transparent');
+            });
+            
+            if(element) {
+                element.classList.remove('bg-gray-100', 'text-gray-500', 'border-transparent');
+                element.classList.add('bg-navy', 'text-white', 'border-navy');
+            }
+
             window.generateSlots();
         };
 
+        // Generation and Blocking Logic
         window.generateSlots = async () => {
             const dateInput = document.getElementById('bookDate').value;
             if (!dateInput) return;
@@ -930,7 +1013,7 @@
             
             let loadingIcon = 'fa-futbol';
             let iconColor = 'text-orange';
-            if (currentSport.includes('Cricket')) { loadingIcon = 'fa-baseball-bat-ball'; iconColor = 'text-red-500'; }
+            if (currentSport.includes('Cricket') || currentSport.includes('Net')) { loadingIcon = 'fa-baseball-bat-ball'; iconColor = 'text-red-500'; }
             if (currentSport.includes('Pickle')) { loadingIcon = 'fa-table-tennis-paddle-ball'; iconColor = 'text-teal-400'; }
             if (currentSport.includes('Basket')) { loadingIcon = 'fa-basketball'; iconColor = 'text-orange'; }
 
@@ -952,40 +1035,50 @@
                 container.innerHTML = ''; 
                 const price = pricingLogic[currentSport].price;
 
-                // Court Collision Groupings
-                const fullBB = 'Basketball (Full Court)';
-                const bbH1 = 'Basketball (Half Court 1)';
-                const bbH2 = 'Basketball (Half Court 2)';
-                const pbA = 'Pickleball A';
-                const pbB = 'Pickleball B';
-
-                const group1 = [bbH1, pbA]; // Physically the same space
-                const group2 = [bbH2, pbB]; // Physically the same space
-
                 // Loop from 6 AM to 10 PM
                 for(let i = 6; i < 22; i++) {
                     let timeLabel = `${formatTime(i)} - ${formatTime(i+1)}`;
                     
-                    // Specific Logic for Basketball vs Pickleball Conflicts
                     let isBlocked = blocks.some(b => {
                         if(!b.timeSlot || !b.timeSlot.includes(timeLabel)) return false;
                         
                         const booked = b.sport;
                         const viewing = currentSport;
 
-                        // Same exact sport overlap
+                        // 1. Same exact sport overlap
                         if (booked === viewing) return true;
 
-                        // If viewing Full BB, block if ANY of the sub-courts are booked
-                        if (viewing === fullBB && (group1.includes(booked) || group2.includes(booked))) return true;
+                        // 2. 6v6 Turf Logic (Any 6v6 blocks any other 6v6)
+                        const isViewing6v6 = viewing.startsWith('6v6');
+                        const isBooked6v6 = booked.startsWith('6v6');
+                        if (isViewing6v6 && isBooked6v6) return true;
 
-                        // If viewing a sub-court, block if Full BB is booked
-                        if ((group1.includes(viewing) || group2.includes(viewing)) && booked === fullBB) return true;
+                        // 3. 5v5 Turf Logic (Full turf vs Nets)
+                        // Note: ANY 5v5 (Hockey, Football, Cricket) blocks Nets and other 5v5s
+                        const isViewing5v5 = viewing.startsWith('5v5');
+                        const isBooked5v5 = booked.startsWith('5v5');
+                        const isViewingNet = viewing.startsWith('Cricket Net');
+                        const isBookedNet = booked.startsWith('Cricket Net');
+                        
+                        if (isViewing5v5 && isBooked5v5) return true; // Football blocks Hockey etc.
+                        if (isViewing5v5 && isBookedNet) return true; // Full blocked if ANY net booked
+                        if (isViewingNet && isBooked5v5) return true; // ANY net blocked if Full is booked
 
-                        // If viewing a Group 1 court, block if the OTHER Group 1 court is booked
+                        // 4. Basketball & Pickleball Logic
+                        const group1 = ['Basketball Half Court 1', 'Pickleball Court 1'];
+                        const group2 = ['Basketball Half Court 2', 'Pickleball Court 2'];
+                        const fullCourt = 'Basketball Full Court';
+
+                        // Viewing Full Court -> blocked if ANY group 1 or 2 is booked
+                        if (viewing === fullCourt && (group1.includes(booked) || group2.includes(booked))) return true;
+
+                        // Viewing Group 1 or 2 -> blocked if Full Court is booked
+                        if ((group1.includes(viewing) || group2.includes(viewing)) && booked === fullCourt) return true;
+
+                        // Viewing Group 1 -> blocked if the OTHER Group 1 sport is booked
                         if (group1.includes(viewing) && group1.includes(booked)) return true;
 
-                        // If viewing a Group 2 court, block if the OTHER Group 2 court is booked
+                        // Viewing Group 2 -> blocked if the OTHER Group 2 sport is booked
                         if (group2.includes(viewing) && group2.includes(booked)) return true;
 
                         return false;
@@ -1065,7 +1158,7 @@
             pendingBookingPayload = { 
                 name: document.getElementById('bookName').value, 
                 phone: document.getElementById('bookPhone').value, 
-                email: document.getElementById('bookEmail').value, // NEW EMAIL FIELD
+                email: document.getElementById('bookEmail').value, 
                 sport: currentSport, 
                 date: selectedDate, 
                 timeSlot: combinedTimes, 
@@ -1153,7 +1246,7 @@
                 }
 
                 // 3. Redirect to WhatsApp for Screenshot
-                const waMsg = `*Advance Payment Done! Confirm My Slot* ✅%0A%0A*Name:* ${pendingBookingPayload.name}%0A*Sport:* ${pendingBookingPayload.sport}%0A*Date:* ${pendingBookingPayload.date}%0A*Time:* ${pendingBookingPayload.timeSlot}%0A%0A*Total Slot Value:* ₹${total}%0A*Advance Paid:* ₹${advance}%0A*Pending (Pay at Venue):* ₹${total - advance}%0A%0A[Please attach your payment screenshot here]`;
+                const waMsg = `*Advance Payment Done! Confirm My Slot* ✅%0A%0A*Name:* ${pendingBookingPayload.name}%0A*Court:* ${pendingBookingPayload.sport}%0A*Date:* ${pendingBookingPayload.date}%0A*Time:* ${pendingBookingPayload.timeSlot}%0A%0A*Total Slot Value:* ₹${total}%0A*Advance Paid:* ₹${advance}%0A*Pending (Pay at Venue):* ₹${total - advance}%0A%0A[Please attach your payment screenshot here]`;
                 window.open(`https://wa.me/9156194847?text=${waMsg}`, '_blank');
                 
                 // Cleanup
@@ -1286,7 +1379,6 @@
 
             const todayStr = new Date().toISOString().split("T")[0];
             document.getElementById('bookDate').min = todayStr; 
-            document.getElementById('heroDate').min = todayStr;
             
             gsap.registerPlugin(ScrollTrigger);
             gsap.utils.toArray('.gs-reveal').forEach(elem => {
@@ -1313,7 +1405,8 @@
                 }
             });
 
-            window.setSport('Football');
+            // Initialize App state
+            window.setMainCategory('6v6');
             window.fetchTournaments(); // Initiates fetch for dynamic tournaments
         });
 
